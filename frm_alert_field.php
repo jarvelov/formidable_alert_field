@@ -16,30 +16,31 @@ class Frm_Alert_Field Extends Frm_Alert {
     
     function __construct() {
         //Add alert field to available Formidable fields
-        add_filter('frm_pro_available_fields', array('Frm_Alert_Field', 'add_basic_field') );
+        add_filter('frm_pro_available_fields', array('Frm_Alert_Field', 'add_alert_field') );
 
         //Set up default settings for alert field
-        add_filter('frm_before_field_created', array('Frm_Alert_Field', 'set_my_field_defaults') );
+        add_filter('frm_before_field_created', array('Frm_Alert_Field', 'set_alert_field_defaults') );
 
         //Show the field in the form builder
-        add_action('frm_display_added_fields', array('Frm_Alert_Field', 'show_the_admin_field') );
+        add_action('frm_display_added_fields', array('Frm_Alert_Field', 'alert_field_admin') );
 
         //Set field options
-        add_action('frm_field_options_form', array('Frm_Alert_Field', 'my_field_options_form', 10, 3) );
+        add_action('frm_field_options_form', array('Frm_Alert_Field', 'alert_field_options', 10, 3) );
 
         //Show field in the front end
-        add_action('frm_form_fields', array('Frm_Alert_Field', 'show_my_front_field', 10, 2) );
+        add_action('frm_form_fields', array('Frm_Alert_Field', 'alert_field_front_end', 10, 2) );
     }
 
     //Add alert field to available formidable fields
-    public static function add_basic_field($fields){
+    public static function add_alert_field($fields){
       var_dump($fields);
+      break;
       $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
       return $fields;
     }
 
     //Set default options for the alert field
-    public static function set_my_field_defaults($field_data){
+    public static function set_alert_field_defaults($field_data){
       if($field_data['type'] != 'frm_alert_field'){ //change to your field key
         return $field_data;
       }
@@ -58,7 +59,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Add button to display in the in form builder
-    public static function show_the_admin_field($field){
+    public static function alert_field_admin($field){
       if ( $field['type'] != 'frm_alert_field') {
         return;
       }
@@ -72,7 +73,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Add options to configure field in form builder
-    public static function my_field_options_form($field, $display, $values){
+    public static function alert_field_options($field, $display, $values){
       if ( $field['type'] != 'frm_alert_field' ) {
         return;
       }
@@ -106,7 +107,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Show alert field when form is viewed on the front end
-    public static function show_my_front_field($field, $field_name){
+    public static function alert_field_front_end($field, $field_name){
       if ( $field['type'] != 'frm_alert_field' ) {
         return;
       }
