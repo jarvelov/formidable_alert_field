@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(-1);
+
 /** Frm_Alert_Field
 * Adds an alert field to Formidable which can trigger actions on certain events such as
     a field's value is updated,
@@ -18,7 +22,6 @@ class Frm_Alert_Field Extends Frm_Alert {
     function add_basic_field($fields){
       $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
       return $fields;
-      var_dump($fields);
     }
 
     //Set default options for the alert field
@@ -100,7 +103,6 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     function init_alert_field() {
-      var_dump($_POST);
         //Add alert field to available Formidable fields
         add_filter('frm_available_fields', array($this, 'add_basic_field') );
 
