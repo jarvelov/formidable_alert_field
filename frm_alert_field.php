@@ -100,6 +100,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     function init_alert_field() {
+      var_dump($_POST);
         //Add alert field to available Formidable fields
         add_filter('frm_available_fields', array($this, 'add_basic_field') );
 
