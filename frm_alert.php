@@ -6,7 +6,7 @@ error_reporting(-1);
 
 /*
 Plugin Name: Frm Alert
-Plugin URI: http://jarvelov.se/portfolio/frm_alert
+Plugin URI: http://tobias.jarvelov.se/portfolio/frm_alert
 Description: Extends Formidable plugin adding an alert field
 Version: 0.1
 Author: Tobias Järvelöv
