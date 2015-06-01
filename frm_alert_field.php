@@ -26,7 +26,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Set default options for the alert field
-    function set_my_field_defaults($field_data){
+    public static function set_my_field_defaults($field_data){
       if($field_data['type'] != 'frm_alert_field'){ //change to your field key
         return $field_data;
       }
