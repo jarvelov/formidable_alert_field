@@ -105,7 +105,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     private function init_alert_field() {
         //Add alert field to available Formidable fields
-        add_filter('frm_available_fields', array('Frm_Alert_Field', 'add_basic_field') );
+        add_filter('frm_pro_available_fields', array('Frm_Alert_Field', 'add_basic_field') );
 
         //Set up default settings for alert field
         add_filter('frm_before_field_created', array('Frm_Alert_Field', 'set_my_field_defaults') );
