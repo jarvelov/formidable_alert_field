@@ -20,6 +20,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Add alert field to available formidable fields
     function add_basic_field($fields){
+      var_dump($fields);
       $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
       return $fields;
     }
