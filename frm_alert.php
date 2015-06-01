@@ -53,10 +53,7 @@ License:
      */
     function __construct() {
         //register an activation hook for the plugin
-        register_activation_hook( __FILE__, array( &$this, 'install_frm_alert' ) );
-
-        //Hook up to the init action
-        add_action( 'init', array( &$this, 'init_frm_alert' ) );
+        register_activation_hook( __FILE__, array( &$this, 'init_frm_alert' ) );
     }
     
     /**
