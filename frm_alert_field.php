@@ -19,7 +19,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Add alert field to available formidable fields
-    function add_basic_field($fields){
+    public static function add_basic_field($fields){
       var_dump($fields);
       $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
       return $fields;
@@ -45,7 +45,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Add button to display in the in form builder
-    function show_the_admin_field($field){
+    public static function show_the_admin_field($field){
       if ( $field['type'] != 'frm_alert_field') {
         return;
       }
@@ -59,7 +59,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Add options to configure field in form builder
-    function my_field_options_form($field, $display, $values){
+    public static function my_field_options_form($field, $display, $values){
       if ( $field['type'] != 'frm_alert_field' ) {
         return;
       }
@@ -93,7 +93,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Show alert field when form is viewed on the front end
-    function show_my_front_field($field, $field_name){
+    public static function show_my_front_field($field, $field_name){
       if ( $field['type'] != 'frm_alert_field' ) {
         return;
       }
@@ -103,9 +103,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     <?php
     }
 
-    function init_alert_field() {
-      var_dump('TEST');
-      break;
+    private function init_alert_field() {
         //Add alert field to available Formidable fields
         add_filter('frm_available_fields', array('Frm_Alert_Field', 'add_basic_field') );
 
