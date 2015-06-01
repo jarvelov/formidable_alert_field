@@ -15,7 +15,20 @@ error_reporting(-1);
 class Frm_Alert_Field Extends Frm_Alert {
     
     function __construct() {
-        $this->init_alert_field();
+        //Add alert field to available Formidable fields
+        add_filter('frm_pro_available_fields', array('Frm_Alert_Field', 'add_basic_field') );
+
+        //Set up default settings for alert field
+        add_filter('frm_before_field_created', array('Frm_Alert_Field', 'set_my_field_defaults') );
+
+        //Show the field in the form builder
+        add_action('frm_display_added_fields', array('Frm_Alert_Field', 'show_the_admin_field') );
+
+        //Set field options
+        add_action('frm_field_options_form', array('Frm_Alert_Field', 'my_field_options_form', 10, 3) );
+
+        //Show field in the front end
+        add_action('frm_form_fields', array('Frm_Alert_Field', 'show_my_front_field', 10, 2) );
     }
 
     //Add alert field to available formidable fields
@@ -101,23 +114,6 @@ class Frm_Alert_Field Extends Frm_Alert {
     ?>
     <input type="text" id="field_<?php echo $field['field_key'] ?>" name="item_meta[<?php echo $field['id'] ?>" value="<?php echo esc_attr($field['value']) ?>" <?php do_action('frm_field_input_html', $field) ?>/>
     <?php
-    }
-
-    private function init_alert_field() {
-        //Add alert field to available Formidable fields
-        add_filter('frm_pro_available_fields', array('Frm_Alert_Field', 'add_basic_field') );
-
-        //Set up default settings for alert field
-        add_filter('frm_before_field_created', array('Frm_Alert_Field', 'set_my_field_defaults') );
-
-        //Show the field in the form builder
-        add_action('frm_display_added_fields', array('Frm_Alert_Field', 'show_the_admin_field') );
-
-        //Set field options
-        add_action('frm_field_options_form', array('Frm_Alert_Field', 'my_field_options_form', 10, 3) );
-
-        //Show field in the front end
-        add_action('frm_form_fields', array('Frm_Alert_Field', 'show_my_front_field', 10, 2) );
     }
 }
 
