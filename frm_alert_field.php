@@ -18,6 +18,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     function add_basic_field($fields){
       $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
       return $fields;
+      var_dump($fields);
     }
 
     //Set default options for the alert field
