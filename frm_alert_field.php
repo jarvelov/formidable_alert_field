@@ -85,7 +85,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     <tr><td><label>frm_alert_field Options</label></td>
         <td>
-        <label for="label1_<?php echo $field['id'] ?>" class="howto">Draw It Label
+        <label for="label1_<?php echo $field['id'] ?>" class="howto">Draw It Label</label>
         <input type="text" name="field_options[label1_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['label1']); ?>" class="frm_long_input" id="label1_<?php echo $field['id'] ?>"  />
         </td>
     </tr>
