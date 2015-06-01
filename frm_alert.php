@@ -61,8 +61,10 @@ License:
      */
     function init_frm_alert() {
         if( !class_exists('Frm_Alert_Field') ) {
-            require(FADIR . '/' . self::slug . '_field.php');
+            include_once(FADIR . '/' . self::slug . '_field.php');
         }
+
+        $frm_alert_field = new Frm_Alert_Field();
     }
     
 } // end class
