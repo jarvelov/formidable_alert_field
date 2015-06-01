@@ -1,4 +1,9 @@
 <?php
+
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(-1);
+
 /*
 Plugin Name: Frm Alert
 Plugin URI: http://jarvelov.se/portfolio/frm_alert
@@ -59,7 +64,7 @@ License:
      */
     function init_frm_alert() {
         if( !class_exists('Frm_Alert_Field') ) {
-            require(FADIR . self::slug . '_field.php');
+            require(FADIR . '/' . self::slug . '_field.php');
         }
     }
     
