@@ -170,24 +170,28 @@ class Frm_Alert_Field Extends Frm_Alert {
                 <tr><td><label>Alert Settings</label></td>
                     <td>
                     <?php
-                        $html = '<select name="field_options[trigger_fields_select_' . $field['id'] . '">';
-                        $sub_html = NULL;
-                            foreach ($trigger_fields as $key => $value) {
-                                $html .= '<option value="' . $key . '">' . $value['name'] . '</option>';
-                                if( is_array($value['value']) ) {
-                                    $sub_html .= '<select name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" id="alert_trigger_value_' . $key . '">';
-                                    foreach ($value['value'] as $key => $value) {
-                                        $sub_html .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
-                                    }
-                                    $sub_html .= '</select>';
-                                } else {
-                                    $sub_html .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
-                                }
-                            }
-                        $html .= '</select>';
+                        $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '">';
+                        $trigger_values = NULL;
+                        //trigger_fields
+                        foreach ($trigger_fields as $key => $value) {
+                            $trigger_field .= '<option value="' . $key . '">' . $value['name'] . '</option>';
 
-                        echo '<div class="alert_html_trigger_container">' . $html . '</div>';
-                        echo '<div class="alert_sub_html_container">' . $sub_html . '</div>';
+                            //trigger_values
+                            if( is_array($value['value']) ) {
+                                $trigger_values .= '<select name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" id="alert_trigger_value_' . $key . '">';
+                                foreach ($value['value'] as $key => $value) {
+                                    $trigger_values .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
+                                }
+                                $trigger_values .= '</select>';
+                            } else {
+                                $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
+                            }
+                        }
+                        $trigger_field .= '</select>';
+
+                        echo '<div class="alert_trigger_field_container">' . $trigger_field . '</div>';
+                        echo '<div class="alert_trigger_condition_container>' . $trigger_conditions . '</div>';
+                        echo '<div class="alert_trigger_value_container">' . $trigger_values . '</div>';
                         ?>
                     </td>
                 </tr>
