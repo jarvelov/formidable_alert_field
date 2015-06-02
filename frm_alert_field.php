@@ -35,22 +35,22 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     private static function objectToArray($d) {
         if (is_object($d)) {
-        // Gets the properties of the given object
-        // with get_object_vars function
+            // Gets the properties of the given object
+            // with get_object_vars function
             $d = get_object_vars($d);
         }
 
         if (is_array($d)) {
-        /*
-        * Return array converted to object
-        * Using __FUNCTION__ (Magic constant)
-        * for recursive call
-        */
-            return array_map(Frm_Alert_Field::objectToArray, $d);
+            /*
+            * Return array converted to object
+            * Using __CLASS__ and __FUNCTION__ (Magic constant)
+            * for recursive call
+            */
+            return array_map( array(__CLASS__, __FUNCTION__), $d);
         } else {
             // Return array
             return $d;
-            }
+        }
     }
 
     /** get_alert_field_defaults()
