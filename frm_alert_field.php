@@ -101,9 +101,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 </tr>
             <?php
         } else {
-            <select name="field_options[trigger_fields_<?php echo $field['id'] ?>]">
-
-            </select>
+            echo $field['id'];
         }
     }
 
