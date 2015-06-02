@@ -75,6 +75,10 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'hour' => 3600,
                 'day' => 86400
             ),
+            'duration_start' => array(
+                'created' => 'Created',
+                'updated' => 'Updated'
+            ),
             'actions' => array(
                 'email' => 'Send E-mail'
             )
@@ -189,6 +193,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 <td>
                 <?php
                     $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '">';
+                    $trigger_field .= '<option value="">— Select —</option>';
                     $trigger_values = NULL;
                     //trigger_fields
                     foreach ($trigger_fields as $key => $value) {
@@ -200,23 +205,39 @@ class Frm_Alert_Field Extends Frm_Alert {
                             foreach ($value['value'] as $key => $value) {
                                 $trigger_values .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
                             }
+
+                            $trigger_values .= '<option value="custom_value">Custom Value</option>';
                             $trigger_values .= '</select>';
+                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id'] . '_' . $key . '" placeholder="Enter a custom value" id="alert_trigger_value_custom_value" />';
                         } else {
                             $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
                         }
                     }
                     $trigger_field .= '</select>';
 
-                    //trigger conditions
-                    $trigger_conditions = '<select name="field_options[trigger_field_conditions_' . $field['id'] . ']">';
+                    //trigger condition operators
+                    $trigger_operator = '<select name="field_options[trigger_field_condition_operator_' . $field['id'] . ']">';
                     foreach ($defaults['operators'] as $key => $value) {
-                        $trigger_conditions .= '<option value="' . htmlspecialchars($key) . '">' . $value . '</option>';
+                        $trigger_operator .= '<option value="' . htmlspecialchars($key) . '">' . $value . '</option>';
                     }
-                    $trigger_conditions .= '</select>';
+
+                    //trigger condition duration
+                    $trigger_duration .= '<select name="field_options[trigger_field_condition_duration_' . $field['id'] . ']">';
+                    foreach ($defaults['durations'] as $key => $value) {
+                        $trigger_duration .= '<option value="' . $key . '">' . $value . '</option>';
+                    }
+                    $trigger_duration .= '</select>';
+
+                    $trigger_duration_start .= '<select name="field_options[trigger_field_condition_duration_start_' . $field['id'] . ']">';
+                    foreach ($defaults['durations'] as $key => $value) {
+                        $trigger_duration_start .= '<option value="' . $key . '">' . $value . '</option>';
+                    }
+                    $trigger_duration_start .= '</select>';
 
                     echo '<div class="alert_trigger_field_container">' . $trigger_field . '</div>';
-                    echo '<div class="alert_trigger_condition_container">' . $trigger_conditions . '</div>';
+                    echo '<div class="alert_trigger_operator_container">' . $trigger_operator . '</div>';
                     echo '<div class="alert_trigger_value_container">' . $trigger_values . '</div>';
+                    echo '<div class="alert_trigger_operator_container">' . 'for a duration of' . $trigger_duration . 'calculted from when post is ' . $trigger_duration_start '</div>';
                     //echo '<div class="alert_trigger_action_container">' . $trigger_actions . '</div>';
                     ?>
                 </td>
