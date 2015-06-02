@@ -102,14 +102,15 @@ class Frm_Alert_Field Extends Frm_Alert {
                                     'value' => $key
                                 );
                         }
-                    }
+
+                        $trigger_fields[] = $values;
 
                     break;
                 default:
                     //Unsupported field type
                     break;
+                }
             }
-            $trigger_fields[] = $values;
         }
 
         return $trigger_fields;
