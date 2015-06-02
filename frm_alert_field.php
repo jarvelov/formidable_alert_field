@@ -30,6 +30,17 @@ class Frm_Alert_Field Extends Frm_Alert {
         //Show field in the front end
         add_action('frm_form_fields', array('Frm_Alert_Field', 'alert_field_front_end'), 10, 2);
     }
+    /** get_alert_field_defaults()
+    *   Returns an array with default values
+    **/
+    private static function get_alert_field_defaults() {
+        $defaults_array = array(
+          'size' => 400, 'max' => 150,
+          'label1' => 'Draw It',
+        );
+
+        return $defaults_array;
+    }
 
     //Add alert field to available formidable fields
     public static function add_alert_field($fields){
@@ -44,10 +55,7 @@ class Frm_Alert_Field Extends Frm_Alert {
       }
       
       $field_data['name'] = __('frm_alert_field');
-      $defaults = array(
-        'size' => 400, 'max' => 150,
-        'label1' => 'Draw It',
-      );
+      $defaults = Frm_Alert_Field::get_alert_field_defaults();
 
       foreach($defaults as $key => $value) {
         $field_data['field_options'][$key] = $value;
@@ -67,36 +75,36 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Add options to configure field in form builder
     public static function alert_field_options($field, $display, $values){
-      if ( $field['type'] != 'frm_alert_field' ) {
-        var_dump($field, $values);
-      }
-      
-      $defaults = array(
-        'size' => 400, 'max' => 150,
-        'label1' => 'Draw It',
-      );
+        if ( $field['type'] == 'frm_alert_field' ) {
 
-      foreach($defaults as $key => $value){
-        if ( ! isset($field[$key]) ) {
-          $field[$key] = $value;
+            $defaults = Frm_Alert_Field::get_alert_field_defaults();
+
+            foreach($defaults as $key => $value){
+              if ( ! isset($field[$key]) ) {
+                $field[$key] = $value;
+              }
+            }
+            
+            ?>
+                <tr><td><label>Field Size</label></td>
+                    <td>
+                        <input type="text" name="field_options[size_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['size']); ?>" size="5" /> <span class="howto">pixels wide</span>
+                        <input type="text" name="field_options[max_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['max']); ?>" size="5" /> <span class="howto">pixels high</span>
+                    </td>
+                </tr>
+
+                <tr><td><label>Alert Field Options</label></td>
+                    <td>
+                        <label for="label1_<?php echo $field['id'] ?>" class="howto">Draw It Label</label>
+                        <input type="text" name="field_options[label1_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['label1']); ?>" class="frm_long_input" id="label1_<?php echo $field['id'] ?>"  />
+                    </td>
+                </tr>
+            <?php
+        } else {
+            <select name="field_options[trigger_fields_<?php echo $field['id'] ?>]">
+
+            </select>
         }
-      }
-    ?>
-    <tr><td><label>Field Size</label></td>
-        <td>
-        <input type="text" name="field_options[size_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['size']); ?>" size="5" /> <span class="howto">pixels wide</span>
-
-        <input type="text" name="field_options[max_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['max']); ?>" size="5" /> <span class="howto">pixels high</span>
-        </td>
-    </tr>
-
-    <tr><td><label>Alert Field Options</label></td>
-        <td>
-        <label for="label1_<?php echo $field['id'] ?>" class="howto">Draw It Label</label>
-        <input type="text" name="field_options[label1_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['label1']); ?>" class="frm_long_input" id="label1_<?php echo $field['id'] ?>"  />
-        </td>
-    </tr>
-    <?php
     }
 
     //Show alert field when form is viewed on the front end
