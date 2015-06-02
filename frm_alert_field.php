@@ -181,7 +181,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                                     }
                                     $sub_html .= '</select>';
                                 } else {
-                                    $sub_html .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
+                                    $sub_html .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
                                 }
                             }
                         $html .= '</select>';
