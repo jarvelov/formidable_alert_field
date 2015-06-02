@@ -92,7 +92,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     foreach ($form_field['options'] as $key => $value) {
                         if(is_array($value)) { //drop down with separate values
                             foreach ($value as $sep_keys) {
-                                var_dump($sep_keys['label']);
+                                var_dump($value['label']);
                                 /*
                                 $values[] = array(
                                         'name' => $sep_keys['label'],
@@ -166,7 +166,7 @@ class Frm_Alert_Field Extends Frm_Alert {
             $form_id = intval($field['form_id']);
             $trigger_fields = Frm_Alert_Field::get_form_field_names_and_values($form_id);
 
-            var_dump($trigger_fields);
+            //var_dump($trigger_fields);
             
             ?>
                 <tr><td><label>Field Size</label></td>
