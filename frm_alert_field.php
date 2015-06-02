@@ -91,12 +91,12 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $values = array();
                     foreach ($form_field['options'] as $key => $value) {
                         if(is_array($value)) { //drop down with separate values
-                            foreach ($value as $sep_keys => $sep_values) {
+                            foreach ($value as $sep_keys) {
                                 var_dump($sep_keys);
                                 /*
                                 $values[] = array(
-                                        'name' => $sep_values['label'],
-                                        'value' => $sep_values['value']
+                                        'name' => $sep_keys['label'],
+                                        'value' => $sep_keys['value']
                                     );
                                     */
                             }
