@@ -164,10 +164,26 @@ class Frm_Alert_Field Extends Frm_Alert {
             //Get all fields in form to build trigger alert option
             $form_id = intval($field['form_id']);
             $trigger_fields = Frm_Alert_Field::get_form_field_names_and_values($form_id);
-
-            var_dump($trigger_fields);
-            
+           
             ?>
+
+                <tr><td><label>Alert Settings</label></td>
+                    <td>
+                        <select name="field_options[trigger_fields_select">
+                        <?php
+                            foreach ($trigger_fields as $key => $value) {
+                                if( is_array($value) ) {
+                                    $option = '<option value="' . $value['value'] . '">' . $value . '</option>';
+                                } else {
+                                    $option = '<option value="' . $value . '">' . $value . '</option>';
+                                }
+                                echo $option;
+                            }
+                        ?>
+                        </select>
+                    </td>
+                </tr>
+
                 <tr><td><label>Field Size</label></td>
                     <td>
                         <input type="text" name="field_options[size_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['size']); ?>" size="5" /> <span class="howto">pixels wide</span>
