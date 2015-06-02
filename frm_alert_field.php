@@ -180,6 +180,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                                     foreach ($value['value'] as $key => $value) {
                                         $sub_html .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
                                     }
+                                    $sub_html .= '</select>';
                                 } else {
                                     $sub_html .= '<input type="text" name="field_options[alert_trigger_value_ ' . $field['id'] . '" value="' . $value['value'] . '" />';
                                 }
