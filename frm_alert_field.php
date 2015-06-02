@@ -17,7 +17,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     function __construct() {
         //Add alert field to available Formidable fields
         add_filter('frm_pro_available_fields', array('Frm_Alert_Field', 'add_alert_field') );
-
+/*
         //Set up default settings for alert field
         add_filter('frm_before_field_created', array('Frm_Alert_Field', 'set_alert_field_defaults') );
 
@@ -29,6 +29,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         //Show field in the front end
         add_action('frm_form_fields', array('Frm_Alert_Field', 'alert_field_front_end', 10, 2) );
+        */
     }
 
     //Add alert field to available formidable fields
