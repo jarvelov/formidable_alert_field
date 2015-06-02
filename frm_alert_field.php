@@ -20,10 +20,10 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         //Set up default settings for alert field
         add_filter('frm_before_field_created', array('Frm_Alert_Field', 'set_alert_field_defaults') );
-/*
+
         //Show the field in the form builder
         add_action('frm_display_added_fields', array('Frm_Alert_Field', 'alert_field_admin') );
-
+/*
         //Set field options
         add_action('frm_field_options_form', array('Frm_Alert_Field', 'alert_field_options', 10, 3) );
 
