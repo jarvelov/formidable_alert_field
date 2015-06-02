@@ -30,6 +30,29 @@ class Frm_Alert_Field Extends Frm_Alert {
         //Show field in the front end
         add_action('frm_form_fields', array('Frm_Alert_Field', 'alert_field_front_end'), 10, 2);
     }
+
+    /* Helper Functions */
+
+    private function objectToArray($d) {
+        if (is_object($d)) {
+        // Gets the properties of the given object
+        // with get_object_vars function
+            $d = get_object_vars($d);
+        }
+
+        if (is_array($d)) {
+        /*
+        * Return array converted to object
+        * Using __FUNCTION__ (Magic constant)
+        * for recursive call
+        */
+            return array_map(__FUNCTION__, $d);
+        } else {
+            // Return array
+            return $d;
+            }
+    }
+
     /** get_alert_field_defaults()
     *   Returns an array with default values
     **/
@@ -51,7 +74,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         $form_fields_obj = FrmField::get_all_for_form($form_id);
 
         //Convert form_fields_obj to array
-        $form_fields = array_map(__FUNCTION__, get_object_vars($form_fields_obj));
+        $form_fields = $this->objectToArray();
 
         $trigger_fields = array();
 
