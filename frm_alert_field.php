@@ -84,6 +84,10 @@ class Frm_Alert_Field Extends Frm_Alert {
                 $field[$key] = $value;
               }
             }
+
+            $form_fields = FrmField::get_all_for_form($form_id);
+
+            var_dump($form_fields);
             
             ?>
                 <tr><td><label>Field Size</label></td>
@@ -100,8 +104,6 @@ class Frm_Alert_Field Extends Frm_Alert {
                     </td>
                 </tr>
             <?php
-        } else {
-            var_dump($field['id']);
         }
     }
 
