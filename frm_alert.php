@@ -59,7 +59,7 @@ License:
     /**
      * Runs when the plugin is initialized
      */
-    function init_frm_alert() {
+    public static function init_frm_alert() {
         if( !class_exists('Frm_Alert_Field') ) {
             include_once(FADIR . '/' . self::slug . '_field.php');
         }
