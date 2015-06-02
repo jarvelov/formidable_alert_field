@@ -226,7 +226,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     }
 
                     //trigger condition duration
-                    $trigger_duration = '<input type="number" name="field_options[trigger_field_duration_number_' . $field['id'] . ']" />';
+                    $trigger_duration = '<input type="number" name="field_options[trigger_field_duration_number_' . $field['id'] . ']" step="1" />';
                     $trigger_duration .= '<select name="field_options[trigger_field_condition_duration_' . $field['id'] . ']">';
                     $trigger_duration .= '<option value="">— Select —</option>';
                     foreach ($defaults['durations'] as $key => $value) {
