@@ -249,7 +249,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     }
                     $trigger_action .= '</select>';
 
-                    $alert_action_fields = '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ' class="alert_actions" id="alert_action_email" placeholder="Ex. [admin_mail] or [125]" />';
+                    $alert_action_fields = '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ' class="alert_actions" id="alert_action_email" placeholder="Ex. [admin_email] or [125]" />';
 
                     //Alert is active between these dates
                     $alert_period_start = '<input type="date" name="field_options[alert_period_start_' . $field['id'] . '" />';
