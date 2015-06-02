@@ -244,7 +244,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     //trigger action
                     $trigger_action = '<select name="field_options[trigger_field_action_' . $field['id'] . ']">';
                     $trigger_action .= '<option value="">— Select —</option>';
-                    foreach ($defaults['duration_start'] as $key => $value) {
+                    foreach ($defaults['actions'] as $key => $value) {
                         $trigger_action .= '<option value="' . $key . '">' . $value . '</option>';
                     }
                     $trigger_action .= '</select>';
