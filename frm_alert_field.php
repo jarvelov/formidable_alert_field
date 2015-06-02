@@ -201,16 +201,16 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                         //trigger_values
                         if( is_array($value['value']) ) {
-                            $trigger_values .= '<select name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" id="alert_trigger_value_' . $key . '">';
+                            $trigger_values .= '<select name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . ']" id="alert_trigger_value_' . $key . '">';
                             foreach ($value['value'] as $key => $value) {
                                 $trigger_values .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
                             }
 
                             $trigger_values .= '<option value="custom_value">Custom Value</option>';
                             $trigger_values .= '</select>';
-                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id'] . '_' . $key . '" placeholder="Enter a custom value" id="alert_trigger_value_custom_value" />';
+                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id'] . '_' . $key . ']" placeholder="Enter a custom value" id="alert_trigger_value_custom_value" />';
                         } else {
-                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
+                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . ']" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
                         }
                     }
                     $trigger_field .= '</select>';
@@ -229,18 +229,24 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $trigger_duration .= '</select>';
 
                     //trigger condition duration start - i.e. what time to consider the start time for duration
-
                     $trigger_duration_start = '<select name="field_options[trigger_field_condition_duration_start_' . $field['id'] . ']">';
                     foreach ($defaults['duration_start'] as $key => $value) {
                         $trigger_duration_start .= '<option value="' . $key . '">' . $value . '</option>';
                     }
                     $trigger_duration_start .= '</select>';
 
+                    //trigger action
+                    $trigger_action = '<select name="field_options[trigger_field_action_' . $field['id'] . ']">';
+                    foreach ($defaults['duration_start'] as $key => $value) {
+                        $trigger_action .= '<option value="' . $key . '">' . $value . '</option>';
+                    }
+                    $trigger_action .= '</select>';
+
                     echo '<div class="alert_trigger_field_container">' . $trigger_field . '</div>';
                     echo '<div class="alert_trigger_operator_container">' . $trigger_operator . '</div>';
                     echo '<div class="alert_trigger_value_container">' . $trigger_values . '</div>';
-                    echo '<div class="alert_trigger_operator_container">' . 'for a duration of' . $trigger_duration . ' calculated from when post is ' . $trigger_duration_start . '</div>';
-                    //echo '<div class="alert_trigger_action_container">' . $trigger_actions . '</div>';
+                    echo '<div class="alert_trigger_duration_container">' . 'for a duration of' . $trigger_duration . ' calculated from when post is ' . $trigger_duration_start . '</div>';
+                    echo '<div class="alert_trigger_action_container">' . 'then' . $trigger_actions . '</div>';
                     ?>
                 </td>
             </tr>
