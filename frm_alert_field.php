@@ -88,7 +88,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     /** get_form_field_names_and_values()
-    *
+    *   Returns an array with field names and their values, or values and label if separate values are used
     *
     **/
     private static function get_form_field_names_and_values($form_id) {
