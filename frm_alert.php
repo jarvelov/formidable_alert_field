@@ -53,7 +53,7 @@ License:
      */
     function __construct() {
         //Hook up to the init action
-        add_action( 'init', array( &$this, 'init_frm_alert' ) );
+        add_action( 'init', array( 'Frm_Alert', 'init_frm_alert' ) );
     }
     
     /**
