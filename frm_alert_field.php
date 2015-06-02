@@ -60,6 +60,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Add button to display in the in form builder
     public static function alert_field_admin($field){
+      var_dump($field);
       if ( $field['type'] != 'frm_alert_field') {
         return;
       }
