@@ -33,6 +33,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     /* Helper Functions */
 
+    //Convert object to array
     private static function objectToArray($d) {
         if (is_object($d)) {
             // Gets the properties of the given object
@@ -161,7 +162,7 @@ class Frm_Alert_Field Extends Frm_Alert {
             $form_id = intval($field['form_id']);
             $trigger_fields = Frm_Alert_Field::get_form_field_names_and_values($form_id);
 
-            //var_dump($trigger_fields);
+            var_dump($trigger_fields);
             
             ?>
                 <tr><td><label>Field Size</label></td>
