@@ -173,9 +173,9 @@ class Frm_Alert_Field Extends Frm_Alert {
                         <?php
                             foreach ($trigger_fields as $key => $value) {
                                 if( is_array($value) ) {
-                                    $option = '<option value="' . $value['value'] . '">' . $value . '</option>';
+                                    $option = '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';
                                 } else {
-                                    $option = '<option value="' . $value . '">' . $value . '</option>';
+                                    $option = '<option value="' . $value . '">' . $key . '</option>';
                                 }
                                 echo $option;
                             }
