@@ -42,6 +42,54 @@ class Frm_Alert_Field Extends Frm_Alert {
         return $defaults_array;
     }
 
+    /** get_form_field_names_and_values()
+    *
+    *
+    **/
+    private static function get_form_field_names_and_values($form_id) {
+        //Get all current fields in form
+        $form_fields = FrmField::get_all_for_form($form_id);
+
+        $trigger_fields = array();
+
+        //Go over all fields and get the name and value of it and push to trigger_fields array
+        foreach ($form_fields as $form_field) {
+            switch ($form_field['type']) {
+                case 'text':
+                    $trigger_fields[] = array(
+                            'name' => $form_field['name'],
+                            'value' => $form_field['default_value']
+                        );
+                    break;
+                case 'select':
+                    $values = array();
+                    foreach ($form_field['options'] as $key => $value) {
+                        if(is_array($value)) { //drop down with separate values
+                            foreach ($value as $sep_values) {
+                                $values[] = array(
+                                        'name' => $sep_values['label'],
+                                        'value' => $sep_values['value']
+                                    );
+                            }
+                        } else {
+                            $values[] = array(
+                                    'name' => $key,
+                                    'value' => $key
+                                );
+                        }
+                    }
+
+                    break;
+                default:
+                    //Unsupported field type
+                    break;
+            }
+            $trigger_fields[] = $values;
+        }
+
+        return $trigger_fields;
+    }
+
     //Add alert field to available formidable fields
     public static function add_alert_field($fields){
       $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
@@ -85,10 +133,9 @@ class Frm_Alert_Field Extends Frm_Alert {
               }
             }
 
+            //Get all fields in form to build trigger alert option
             $form_id = intval($field['form_id']);
-            $form_fields = FrmField::get_all_for_form($form_id);
-
-            var_dump($form_fields);
+            $trigger_fields = Frm_Alert_Field::get_form_field_names_and_values($form_id);
             
             ?>
                 <tr><td><label>Field Size</label></td>
