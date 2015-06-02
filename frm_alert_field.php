@@ -23,10 +23,10 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         //Show the field in the form builder
         add_action('frm_display_added_fields', array('Frm_Alert_Field', 'alert_field_admin') );
-/*
+
         //Set field options
         add_action('frm_field_options_form', array('Frm_Alert_Field', 'alert_field_options', 10, 3) );
-
+/*
         //Show field in the front end
         add_action('frm_form_fields', array('Frm_Alert_Field', 'alert_field_front_end', 10, 2) );
         */
