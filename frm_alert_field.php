@@ -70,10 +70,10 @@ class Frm_Alert_Field Extends Frm_Alert {
                  '<=' => 'less than or equal to',
             ),
             'durations' => array(
-                1 => 'second',
-                60 => 'minute',
-                3600 => 'hour',
-                86400 => 'day'
+                1 => 'seconds',
+                60 => 'minutes',
+                3600 => 'hours',
+                86400 => 'days'
             ),
             'duration_start' => array(
                 'created' => 'Created',
