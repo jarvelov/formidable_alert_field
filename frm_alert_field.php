@@ -33,7 +33,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     /* Helper Functions */
 
-    private function objectToArray($d) {
+    private static function objectToArray($d) {
         if (is_object($d)) {
         // Gets the properties of the given object
         // with get_object_vars function
@@ -74,7 +74,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         $form_fields_obj = FrmField::get_all_for_form($form_id);
 
         //Convert form_fields_obj to array
-        $form_fields = $this->objectToArray();
+        $form_fields = Frm_Alert_Field::objectToArray();
 
         $trigger_fields = array();
 
