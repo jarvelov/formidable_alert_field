@@ -215,7 +215,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $trigger_conditions .= '</select>';
 
                     echo '<div class="alert_trigger_field_container">' . $trigger_field . '</div>';
-                    echo '<div class="alert_trigger_condition_container>' . $trigger_conditions . '</div>';
+                    echo '<div class="alert_trigger_condition_container">' . $trigger_conditions . '</div>';
                     echo '<div class="alert_trigger_value_container">' . $trigger_values . '</div>';
                     //echo '<div class="alert_trigger_action_container">' . $trigger_actions . '</div>';
                     ?>
