@@ -95,16 +95,15 @@ class Frm_Alert_Field Extends Frm_Alert {
                                     'name' => $value['label'],
                                     'value' => $value['value']
                                 );
-                            }
                         } else {
                             $values[] = array(
                                     'name' => $key,
                                     'value' => $key
                                 );
                         }
-
-                        $trigger_fields[] = $values;
-
+                    }
+                    
+                    $trigger_fields[] = $values;
                     break;
                 default:
                     //Unsupported field type
