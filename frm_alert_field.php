@@ -102,13 +102,12 @@ class Frm_Alert_Field Extends Frm_Alert {
                                 );
                         }
                     }
-                    
+
                     $trigger_fields[] = $values;
                     break;
                 default:
                     //Unsupported field type
                     break;
-                }
             }
         }
 
