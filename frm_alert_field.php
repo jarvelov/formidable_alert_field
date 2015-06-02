@@ -175,13 +175,13 @@ class Frm_Alert_Field Extends Frm_Alert {
                             foreach ($trigger_fields as $key => $value) {
                                 $html .= '<option value="' . $key . '">' . $value['name'] . '</option>';
                                 if( is_array($value['value']) ) {
-                                    $sub_html .= '<select name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" id="alert_trigger_dropdown_' . $key . '">';
+                                    $sub_html .= '<select name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" id="alert_trigger_value_' . $key . '">';
                                     foreach ($value['value'] as $key => $value) {
                                         $sub_html .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
                                     }
                                     $sub_html .= '</select>';
                                 } else {
-                                    $sub_html .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '" value="' . $value['value'] . '" />';
+                                    $sub_html .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
                                 }
                             }
                         $html .= '</select>';
