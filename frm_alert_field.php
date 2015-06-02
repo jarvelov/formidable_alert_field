@@ -201,6 +201,8 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                         //trigger_values
                         if( is_array($value['value']) ) {
+                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id'] . '_' . $key . ']" placeholder="Enter a custom value" id="alert_trigger_value_custom_value" />';
+
                             $trigger_values .= '<select name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . ']" id="alert_trigger_value_' . $key . '">';
                             $trigger_values .= '<option value="">— Select —</option>';
 
@@ -210,7 +212,6 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                             $trigger_values .= '<option value="custom_value">Custom Value</option>';
                             $trigger_values .= '</select>';
-                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id'] . '_' . $key . ']" placeholder="Enter a custom value" id="alert_trigger_value_custom_value" />';
                         } else {
                             $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . ']" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
                         }
