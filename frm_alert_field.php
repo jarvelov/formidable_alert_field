@@ -68,7 +68,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     //Add options to configure field in form builder
     public static function alert_field_options($field, $display, $values){
       if ( $field['type'] != 'frm_alert_field' ) {
-        return;
+        var_dump($field, $values);
       }
       
       $defaults = array(
