@@ -222,13 +222,13 @@ class Frm_Alert_Field Extends Frm_Alert {
                     }
 
                     //trigger condition duration
-                    $trigger_duration .= '<select name="field_options[trigger_field_condition_duration_' . $field['id'] . ']">';
+                    $trigger_duration = '<select name="field_options[trigger_field_condition_duration_' . $field['id'] . ']">';
                     foreach ($defaults['durations'] as $key => $value) {
                         $trigger_duration .= '<option value="' . $key . '">' . $value . '</option>';
                     }
                     $trigger_duration .= '</select>';
 
-                    $trigger_duration_start .= '<select name="field_options[trigger_field_condition_duration_start_' . $field['id'] . ']">';
+                    $trigger_duration_start = '<select name="field_options[trigger_field_condition_duration_start_' . $field['id'] . ']">';
                     foreach ($defaults['durations'] as $key => $value) {
                         $trigger_duration_start .= '<option value="' . $key . '">' . $value . '</option>';
                     }
