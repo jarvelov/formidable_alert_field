@@ -62,12 +62,12 @@ class Frm_Alert_Field Extends Frm_Alert {
             'size' => 400, 'max' => 150,
             'label1' => 'Draw It',
             'operators' => array(
-                'equal to' => '==',
-                'NOT equal to' => '!=',
-                'greater than' => '>',
-                'less than' => '<',
-                'greater than or equal to' => '>=',
-                'less than or equal to' => '<=',
+                 '==' => 'equal to',
+                 '!=' => 'NOT equal to',
+                 '>' => 'greater than',
+                 '<' => 'less than',
+                 '>=' => 'greater than or equal to',
+                 '<=' => 'less than or equal to',
             ),
             'durations' => array(
                 'second' => 1,
@@ -209,9 +209,9 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                     //trigger conditions
                     $trigger_conditions = '<select name="field_options[trigger_field_conditions_' . $field['id'] . ']">';
-                        foreach ($defaults['operators'] as $key => $value) {
-                            $trigger_conditions .= '<option value="' . htmlspecialchars($key) . '">' . $value . '</option>';
-                        }
+                    foreach ($defaults['operators'] as $key => $value) {
+                        $trigger_conditions .= '<option value="' . htmlspecialchars($key) . '">' . $value . '</option>';
+                    }
                     $trigger_conditions .= '</select>';
 
                     echo '<div class="alert_trigger_field_container">' . $trigger_field . '</div>';
