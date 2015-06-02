@@ -170,23 +170,24 @@ class Frm_Alert_Field Extends Frm_Alert {
                 <tr><td><label>Alert Settings</label></td>
                     <td>
                     <?php
-                        $trigger_field_select = '<select name="field_options[trigger_fields_select' . $field['id'] . '">';
+                        $html = '<select name="field_options[trigger_fields_select' . $field['id'] . '">';
                             foreach ($trigger_fields as $key => $value) {
-                                $trigger_field_select .= '<option value="' . $key . '">' . $value['name'] . '</option>';
+                                $html .= '<option value="' . $key . '">' . $value['name'] . '</option>';
 
+                                $sub_html = NULL;
                                 if( is_array($value['value']) ) {
-                                    $trigger_values = '<select name="field_options[alert_trigger_value' . $field['id'] . '" id="alert_trigger_dropdown_' . $key . '">';
+                                    $sub_html .= '<select name="field_options[alert_trigger_value' . $field['id'] . '" id="alert_trigger_dropdown_' . $key . '">';
                                     foreach ($value['value'] as $key => $value) {
-                                        $trigger_values .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
+                                        $sub_html .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
                                     }
                                 } else {
-                                    $trigger_values = '<input type="text" name="field_options[alert_trigger_value_ ' . $field['id'] . '" value="' . $value['value'] . '" />';
+                                    $sub_html .= '<input type="text" name="field_options[alert_trigger_value_ ' . $field['id'] . '" value="' . $value['value'] . '" />';
                                 }
                             }
-                        $trigger_field_select .= '</select>';
+                        $html .= '</select>';
 
-                        echo $select;
-                        echo $trigger_values;
+                        echo '<div class="alert_html_trigger_container">' . $html . '</div>';
+                        echo '<div class="alert_sub_html_container">' . $sub_html . '</div>';
                         ?>
                     </td>
                 </tr>
