@@ -46,7 +46,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         * Using __FUNCTION__ (Magic constant)
         * for recursive call
         */
-            return array_map(__FUNCTION__, $d);
+            return array_map(Frm_Alert_Field::__FUNCTION__, $d);
         } else {
             // Return array
             return $d;
