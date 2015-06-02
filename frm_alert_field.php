@@ -246,11 +246,16 @@ class Frm_Alert_Field Extends Frm_Alert {
                     }
                     $trigger_action .= '</select>';
 
+                    //Alert is active between these dates
+                    $alert_period_start = '<input type="date" name="field_options[alert_period_start_' . $field['id'] . '" />';
+                    $alert_period_stop = '<input type="date" name="field_options[alert_period_stop_' . $field['id'] . '" />';
+
                     echo '<div class="alert_trigger_field_container">' . $trigger_field . '</div>';
                     echo '<div class="alert_trigger_operator_container">' . $trigger_operator . '</div>';
                     echo '<div class="alert_trigger_value_container">' . $trigger_values . '</div>';
                     echo '<div class="alert_trigger_duration_container">' . 'for a duration of' . $trigger_duration . ' calculated from when post is ' . $trigger_duration_start . '</div>';
                     echo '<div class="alert_trigger_action_container">' . 'then' . $trigger_action . '</div>';
+                    echo '<div class="alert_active_period_container">' . 'from ' . $alert_period_start . ' to ' . $alert_period_stop .'</div>';
                     ?>
                 </td>
             </tr>
