@@ -100,10 +100,9 @@ class Frm_Alert_Field Extends Frm_Alert {
                                     'value' => $value['value']
                                 );
                         } else {
-                            var_dump($value);
                             $values[] = array(
-                                    'label' => $key,
-                                    'value' => $key
+                                    'label' => $value,
+                                    'value' => $value
                                 );
                         }
                     }
