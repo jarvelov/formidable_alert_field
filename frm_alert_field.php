@@ -217,12 +217,14 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                     //trigger condition operators
                     $trigger_operator = '<select name="field_options[trigger_field_condition_operator_' . $field['id'] . ']">';
+                    $trigger_operator .= '<option value="">— Select —</option>';
                     foreach ($defaults['operators'] as $key => $value) {
                         $trigger_operator .= '<option value="' . htmlspecialchars($key) . '">' . $value . '</option>';
                     }
 
                     //trigger condition duration
                     $trigger_duration = '<select name="field_options[trigger_field_condition_duration_' . $field['id'] . ']">';
+                    $trigger_duration .= '<option value="">— Select —</option>';
                     foreach ($defaults['durations'] as $key => $value) {
                         $trigger_duration .= '<option value="' . $key . '">' . $value . '</option>';
                     }
@@ -230,6 +232,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                     //trigger condition duration start - i.e. what time to consider the start time for duration
                     $trigger_duration_start = '<select name="field_options[trigger_field_condition_duration_start_' . $field['id'] . ']">';
+                    $trigger_duration_start .= '<option value="">— Select —</option>';
                     foreach ($defaults['duration_start'] as $key => $value) {
                         $trigger_duration_start .= '<option value="' . $key . '">' . $value . '</option>';
                     }
@@ -237,6 +240,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                     //trigger action
                     $trigger_action = '<select name="field_options[trigger_field_action_' . $field['id'] . ']">';
+                    $trigger_action .= '<option value="">— Select —</option>';
                     foreach ($defaults['duration_start'] as $key => $value) {
                         $trigger_action .= '<option value="' . $key . '">' . $value . '</option>';
                     }
@@ -246,7 +250,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     echo '<div class="alert_trigger_operator_container">' . $trigger_operator . '</div>';
                     echo '<div class="alert_trigger_value_container">' . $trigger_values . '</div>';
                     echo '<div class="alert_trigger_duration_container">' . 'for a duration of' . $trigger_duration . ' calculated from when post is ' . $trigger_duration_start . '</div>';
-                    echo '<div class="alert_trigger_action_container">' . 'then' . $trigger_actions . '</div>';
+                    echo '<div class="alert_trigger_action_container">' . 'then' . $trigger_action . '</div>';
                     ?>
                 </td>
             </tr>
