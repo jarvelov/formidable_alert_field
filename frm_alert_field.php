@@ -48,7 +48,10 @@ class Frm_Alert_Field Extends Frm_Alert {
     **/
     private static function get_form_field_names_and_values($form_id) {
         //Get all current fields in form
-        $form_fields = FrmField::get_all_for_form($form_id);
+        $form_fields_obj = FrmField::get_all_for_form($form_id);
+
+        //Convert form_fields_obj to array
+        $form_fields = array_map(__FUNCTION__, get_object_vars($form_fields_obj);
 
         $trigger_fields = array();
 
