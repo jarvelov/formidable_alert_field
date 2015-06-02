@@ -101,7 +101,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 </tr>
             <?php
         } else {
-            echo $field['id'];
+            var_dump($field['id']);
         }
     }
 
