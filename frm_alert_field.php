@@ -107,7 +107,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                         }
                     }
 
-                    $trigger_fields[] = array('name' => $form_field['name'];, 'value' => $values);
+                    $trigger_fields[] = array('name' => $form_field['name'], 'value' => $values);
                     break;
                 default:
                     //Unsupported field type
