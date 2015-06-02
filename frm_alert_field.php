@@ -49,8 +49,8 @@ class Frm_Alert_Field Extends Frm_Alert {
         'label1' => 'Draw It',
       );
 
-      foreach($defaults as $k => $v) {
-        $field_data['field_options'][$k] = $v;
+      foreach($defaults as $key => $value) {
+        $field_data['field_options'][$key] = $value;
       }
             
       return $field_data;
@@ -63,11 +63,6 @@ class Frm_Alert_Field Extends Frm_Alert {
       }
                 
       $field_name = 'item_meta['. $field['id'] .']';
-      ?>
-    <div style="width:100%;margin-bottom:10px;text-align:center;">
-    <div class="howto button-secondary frm_html_field">This is a placeholder for your frm_alert_field field.</div>   
-    </div>
-    <?php
     }
 
     //Add options to configure field in form builder
@@ -81,9 +76,9 @@ class Frm_Alert_Field Extends Frm_Alert {
         'label1' => 'Draw It',
       );
 
-      foreach($defaults as $k => $v){
-        if ( ! isset($field[$k]) ) {
-          $field[$k] = $v;
+      foreach($defaults as $key => $value){
+        if ( ! isset($field[$key]) ) {
+          $field[$key] = $value;
         }
       }
     ?>
@@ -95,7 +90,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         </td>
     </tr>
 
-    <tr><td><label>frm_alert_field Options</label></td>
+    <tr><td><label>Alert Field Options</label></td>
         <td>
         <label for="label1_<?php echo $field['id'] ?>" class="howto">Draw It Label</label>
         <input type="text" name="field_options[label1_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['label1']); ?>" class="frm_long_input" id="label1_<?php echo $field['id'] ?>"  />
