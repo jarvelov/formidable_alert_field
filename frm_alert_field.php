@@ -208,7 +208,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $trigger_field .= '</select>';
 
                     //trigger conditions
-                    $trigger_conditions = '<select name="field_options[trigger_field_conditions_' . $field['id'] . ']>';
+                    $trigger_conditions = '<select name="field_options[trigger_field_conditions_' . $field['id'] . ']">';
                         foreach ($defaults['operators'] as $key => $value) {
                             $trigger_conditions .= '<option value="' . htmlspecialchars($key) . '">' . $value . '</option>';
                         }
