@@ -82,6 +82,9 @@ class Frm_Alert_Field Extends Frm_Alert {
         //Go over all fields and get the name and value of it and push to trigger_fields array
         foreach ($form_fields as $form_field) {
             switch ($form_field['type']) {
+                case 'frm_alert_field':
+                    //We don't want to trigger on our own field
+                    break;
                 case 'text':
                     $trigger_fields[] = array(
                             'name' => $form_field['name'],
