@@ -59,8 +59,25 @@ class Frm_Alert_Field Extends Frm_Alert {
     **/
     private static function get_alert_field_defaults() {
         $defaults_array = array(
-          'size' => 400, 'max' => 150,
-          'label1' => 'Draw It',
+            'size' => 400, 'max' => 150,
+            'label1' => 'Draw It',
+            'operators' => array(
+                'equal to' => '==',
+                'NOT equal to' => '!=',
+                'greater than' => '>',
+                'less than' => '<',
+                'greater than or equal to' => '>=',
+                'less than or equal to' => '<=',
+            ),
+            'durations' => array(
+                'second' => 1,
+                'minute' => 60,
+                'hour' => 3600,
+                'day' => 86400
+            ),
+            'actions' => array(
+                'email' => 'Send E-mail'
+            )
         );
 
         return $defaults_array;
@@ -151,66 +168,60 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Add options to configure field in form builder
     public static function alert_field_options($field, $display, $values){
-        if ( $field['type'] == 'frm_alert_field' ) {
+          if ( $field['type'] != 'frm_alert_field' ) {
+            return;
+          }
 
-            $defaults = Frm_Alert_Field::get_alert_field_defaults();
+        $defaults = Frm_Alert_Field::get_alert_field_defaults();
 
-            foreach($defaults as $key => $value){
-              if ( ! isset($field[$key]) ) {
-                $field[$key] = $value;
-              }
-            }
-
-            //Get all fields in form to build trigger alert option
-            $form_id = intval($field['form_id']);
-            $trigger_fields = Frm_Alert_Field::get_form_field_names_and_values($form_id);
-           
-            ?>
-
-                <tr><td><label>Alert Settings</label></td>
-                    <td>
-                    <?php
-                        $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '">';
-                        $trigger_values = NULL;
-                        //trigger_fields
-                        foreach ($trigger_fields as $key => $value) {
-                            $trigger_field .= '<option value="' . $key . '">' . $value['name'] . '</option>';
-
-                            //trigger_values
-                            if( is_array($value['value']) ) {
-                                $trigger_values .= '<select name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" id="alert_trigger_value_' . $key . '">';
-                                foreach ($value['value'] as $key => $value) {
-                                    $trigger_values .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
-                                }
-                                $trigger_values .= '</select>';
-                            } else {
-                                $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
-                            }
-                        }
-                        $trigger_field .= '</select>';
-
-                        echo '<div class="alert_trigger_field_container">' . $trigger_field . '</div>';
-                        echo '<div class="alert_trigger_condition_container>' . $trigger_conditions . '</div>';
-                        echo '<div class="alert_trigger_value_container">' . $trigger_values . '</div>';
-                        ?>
-                    </td>
-                </tr>
-
-                <tr><td><label>Field Size</label></td>
-                    <td>
-                        <input type="text" name="field_options[size_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['size']); ?>" size="5" /> <span class="howto">pixels wide</span>
-                        <input type="text" name="field_options[max_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['max']); ?>" size="5" /> <span class="howto">pixels high</span>
-                    </td>
-                </tr>
-
-                <tr><td><label>Alert Field Options</label></td>
-                    <td>
-                        <label for="label1_<?php echo $field['id'] ?>" class="howto">Draw It Label</label>
-                        <input type="text" name="field_options[label1_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['label1']); ?>" class="frm_long_input" id="label1_<?php echo $field['id'] ?>"  />
-                    </td>
-                </tr>
-            <?php
+        foreach($defaults as $key => $value){
+          if ( ! isset($field[$key]) ) {
+            $field[$key] = $value;
+          }
         }
+
+        //Get all fields in form to build trigger alert option
+        $form_id = intval($field['form_id']);
+        $trigger_fields = Frm_Alert_Field::get_form_field_names_and_values($form_id);
+       
+        ?>
+            <tr><td><label>Alert Settings</label></td>
+                <td>
+                <?php
+                    $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '">';
+                    $trigger_values = NULL;
+                    //trigger_fields
+                    foreach ($trigger_fields as $key => $value) {
+                        $trigger_field .= '<option value="' . $key . '">' . $value['name'] . '</option>';
+
+                        //trigger_values
+                        if( is_array($value['value']) ) {
+                            $trigger_values .= '<select name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" id="alert_trigger_value_' . $key . '">';
+                            foreach ($value['value'] as $key => $value) {
+                                $trigger_values .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
+                            }
+                            $trigger_values .= '</select>';
+                        } else {
+                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . '" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
+                        }
+                    }
+                    $trigger_field .= '</select>';
+
+                    //trigger conditions
+                    $trigger_conditions = '<select name="field_options[trigger_field_conditions_' . $field['id'] . ']>';
+                        foreach ($defaults['operators'] as $key => $value) {
+                            $trigger_conditions .= '<option value="' . $key . '">' . $value . '</option>';
+                        }
+                    $trigger_conditions .= '</select>';
+
+                    echo '<div class="alert_trigger_field_container">' . $trigger_field . '</div>';
+                    echo '<div class="alert_trigger_condition_container>' . $trigger_conditions . '</div>';
+                    echo '<div class="alert_trigger_value_container">' . $trigger_values . '</div>';
+                    //echo '<div class="alert_trigger_action_container">' . $trigger_actions . '</div>';
+                    ?>
+                </td>
+            </tr>
+        <?php
     }
 
     //Show alert field when form is viewed on the front end
