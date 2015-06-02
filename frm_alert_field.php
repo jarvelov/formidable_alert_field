@@ -85,9 +85,10 @@ class Frm_Alert_Field Extends Frm_Alert {
               }
             }
 
+            $form_id = intval($field['form_id']);
             $form_fields = FrmField::get_all_for_form($form_id);
 
-            var_dump($field);
+
             
             ?>
                 <tr><td><label>Field Size</label></td>
