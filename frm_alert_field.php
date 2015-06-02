@@ -169,18 +169,25 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                 <tr><td><label>Alert Settings</label></td>
                     <td>
-                        <select name="field_options[trigger_fields_select">
-                        <?php
+                    <?php
+                        $trigger_field_select = '<select name="field_options[trigger_fields_select' . $field['id'] . '">';
                             foreach ($trigger_fields as $key => $value) {
+                                $trigger_field_select .= '<option value="' . $key . '">' . $value['name'] . '</option>';
+
                                 if( is_array($value['value']) ) {
-                                    $option = '<option value="' . $value['name'] . '">' . $value['name'] . '</option>';
+                                    $trigger_values = '<select name="field_options[alert_trigger_value' . $field['id'] . '" id="alert_trigger_dropdown_' . $key . '">';
+                                    foreach ($value['value'] as $key => $value) {
+                                        $trigger_values .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
+                                    }
                                 } else {
-                                    $option = '<option value="' . $value['value'] . '">' . $value['name'] . '</option>';
+                                    $trigger_values = '<input type="text" name="field_options[alert_trigger_value_ ' . $field['id'] . '" value="' . $value['value'] . '" />';
                                 }
-                                echo $option;
                             }
+                        $trigger_field_select .= '</select>';
+
+                        echo $select;
+                        echo $trigger_values;
                         ?>
-                        </select>
                     </td>
                 </tr>
 
