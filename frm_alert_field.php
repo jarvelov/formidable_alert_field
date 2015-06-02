@@ -172,10 +172,10 @@ class Frm_Alert_Field Extends Frm_Alert {
                         <select name="field_options[trigger_fields_select">
                         <?php
                             foreach ($trigger_fields as $key => $value) {
-                                if( is_array($value) ) {
-                                    $option = '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';
+                                if( is_array($value['value']) ) {
+                                    $option = '<option value="' . $value['name'] . '">' . $value['name'] . '</option>';
                                 } else {
-                                    $option = '<option value="' . $value . '">' . $key . '</option>';
+                                    $option = '<option value="' . $value['value'] . '">' . $value['name'] . '</option>';
                                 }
                                 echo $option;
                             }
