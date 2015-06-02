@@ -136,6 +136,8 @@ class Frm_Alert_Field Extends Frm_Alert {
             //Get all fields in form to build trigger alert option
             $form_id = intval($field['form_id']);
             $trigger_fields = Frm_Alert_Field::get_form_field_names_and_values($form_id);
+
+            var_dump($trigger_fields);
             
             ?>
                 <tr><td><label>Field Size</label></td>
