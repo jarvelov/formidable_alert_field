@@ -261,7 +261,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     echo '<div class="alert_trigger_value_container">' . $trigger_values . '</div>';
                     echo '<div class="alert_trigger_duration_container">' . $trigger_duration . ' after an entry is ' . $trigger_duration_start . '</div>';
                     echo '<div class="alert_trigger_action_container">' . 'then' . $trigger_action . '</div>';
-                    echo '<div class=""alert_action_fields_container>' . $alert_action_fields . '</div>';
+                    echo '<div class="alert_action_fields_container">' . $alert_action_fields . '</div>';
                     echo '<div class="alert_active_period_container">' . 'from ' . $alert_period_start . ' to ' . $alert_period_stop .'</div>';
                     ?>
                 </td>
