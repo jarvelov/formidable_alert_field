@@ -33,16 +33,12 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Add alert field to available formidable fields
     public static function add_alert_field($fields){
-      var_dump($fields);
-      break;
       $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
       return $fields;
     }
 
     //Set default options for the alert field
     public static function set_alert_field_defaults($field_data){
-      var_dump($field_data);
-      break;
       if($field_data['type'] != 'frm_alert_field'){ //change to your field key
         return $field_data;
       }
@@ -62,8 +58,6 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Add button to display in the in form builder
     public static function alert_field_admin($field){
-      var_dump($field);
-      break;
       if ( $field['type'] != 'frm_alert_field') {
         return;
       }
@@ -78,8 +72,6 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Add options to configure field in form builder
     public static function alert_field_options($field, $display, $values){
-      var_dump($field);
-      break;
       if ( $field['type'] != 'frm_alert_field' ) {
         return;
       }
@@ -114,8 +106,6 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Show alert field when form is viewed on the front end
     public static function alert_field_front_end($field, $field_name){
-      var_dump($field);
-      break;
       if ( $field['type'] != 'frm_alert_field' ) {
         return;
       }
