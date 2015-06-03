@@ -34,7 +34,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     /* Helper Functions */
 
     //Convert object to array
-    private static function objectToArray($d) {
+    private function objectToArray($d) {
         if (is_object($d)) {
             // Gets the properties of the given object
             // with get_object_vars function
@@ -57,7 +57,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     /** get_alert_field_defaults()
     *   Returns an array with default values
     **/
-    private static function get_alert_field_defaults() {
+    private function get_alert_field_defaults() {
         $defaults_array = array(
             'size' => 400, 'max' => 150,
             'label1' => 'Draw It',
@@ -91,12 +91,12 @@ class Frm_Alert_Field Extends Frm_Alert {
     *   Returns an array with field names and their values, or values and label if separate values are used
     *
     **/
-    private static function get_form_field_names_and_values($form_id) {
+    private function get_form_field_names_and_values($form_id) {
         //Get all current fields in form
         $form_fields_obj = FrmField::get_all_for_form($form_id);
 
         //Convert form_fields_obj to array
-        $form_fields = Frm_Alert_Field::objectToArray($form_fields_obj);
+        $form_fields = $this->objectToArray($form_fields_obj);
 
         $trigger_fields = array();
 
@@ -140,19 +140,19 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Add alert field to available formidable fields
-    public static function add_alert_field($fields){
+    public function add_alert_field($fields){
       $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
       return $fields;
     }
 
     //Set default options for the alert field
-    public static function set_alert_field_defaults($field_data){
+    public function set_alert_field_defaults($field_data){
       if($field_data['type'] != 'frm_alert_field'){ //change to your field key
         return $field_data;
       }
       
       $field_data['name'] = __('frm_alert_field');
-      $defaults = Frm_Alert_Field::get_alert_field_defaults();
+      $defaults = $this->get_alert_field_defaults();
 
       foreach($defaults as $key => $value) {
         $field_data['field_options'][$key] = $value;
@@ -162,7 +162,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Add button to display in the in form builder
-    public static function alert_field_admin($field){
+    public function alert_field_admin($field){
       if ( $field['type'] != 'frm_alert_field') {
         return;
       }
@@ -171,12 +171,12 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Add options to configure field in form builder
-    public static function alert_field_options($field, $display, $values){
+    public function alert_field_options($field, $display, $values){
           if ( $field['type'] != 'frm_alert_field' ) {
             return;
           }
 
-        $defaults = Frm_Alert_Field::get_alert_field_defaults();
+        $defaults = $this->get_alert_field_defaults();
 
         foreach($defaults as $key => $value){
           if ( ! isset($field[$key]) ) {
@@ -186,7 +186,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         //Get all fields in form to build trigger alert option
         $form_id = intval($field['form_id']);
-        $trigger_fields = Frm_Alert_Field::get_form_field_names_and_values($form_id);
+        $trigger_fields = $this->get_form_field_names_and_values($form_id);
        
         ?>
             <tr><td><label>Alert Settings</label></td>
@@ -270,7 +270,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Show alert field when form is viewed on the front end
-    public static function alert_field_front_end($field, $field_name){
+    public function alert_field_front_end($field, $field_name){
       if ( $field['type'] != 'frm_alert_field' ) {
         return;
       }
