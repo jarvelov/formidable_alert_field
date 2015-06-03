@@ -16,19 +16,19 @@ class Frm_Alert_Field Extends Frm_Alert {
     
     function __construct() {
         //Add alert field to available Formidable fields
-        add_filter('frm_pro_available_fields', array('Frm_Alert_Field', 'add_alert_field') );
+        add_filter('frm_pro_available_fields', array($this, 'add_alert_field') );
 
         //Set up default settings for alert field
-        add_filter('frm_before_field_created', array('Frm_Alert_Field', 'set_alert_field_defaults') );
+        add_filter('frm_before_field_created', array($this, 'set_alert_field_defaults') );
 
         //Show the field in the form builder
-        add_action('frm_display_added_fields', array('Frm_Alert_Field', 'alert_field_admin') );
+        add_action('frm_display_added_fields', array($this, 'alert_field_admin') );
 
         //Set field options
-        add_action('frm_field_options_form', array('Frm_Alert_Field', 'alert_field_options'), 10, 3);
+        add_action('frm_field_options_form', array($this, 'alert_field_options'), 10, 3);
 
         //Show field in the front end
-        add_action('frm_form_fields', array('Frm_Alert_Field', 'alert_field_front_end'), 10, 2);
+        add_action('frm_form_fields', array($this, 'alert_field_front_end'), 10, 2);
     }
 
     /* Helper Functions */
