@@ -23,11 +23,15 @@
 }
 
 .alert_trigger_action_container {
-    display: none;
+    display: inline;
 }
 
 .alert_action_fields_container {
-    display: none;
+    display: inline;
+}
+
+.alert_action_field {
+  display: none;
 }
 
 .alert_action_repeat_container {
