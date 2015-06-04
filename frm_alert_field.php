@@ -80,7 +80,8 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'updated' => 'Updated'
             ),
             'actions' => array(
-                'email' => 'Send E-mail'
+                'email' => 'Send E-mail',
+                'update_field_value' => 'Update a field\'s value'
             )
         );
 
@@ -198,6 +199,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     //trigger_fields
                     foreach ($trigger_fields as $key => $value) {
                         $trigger_field .= '<option value="' . $key . '">' . $value['name'] . '</option>';
+                        $trigger_values .= '<div class="alert_trigger_fields_container" id="alert_trigger_value_option_' . $key . '">'
 
                         //trigger_values
                         if( is_array($value['value']) ) {
@@ -215,6 +217,8 @@ class Frm_Alert_Field Extends Frm_Alert {
                         } else {
                             $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . ']" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
                         }
+
+                        $trigger_values .= '</div>'; // ./alert_trigger_fields_container
                     }
                     $trigger_field .= '</select>';
 
