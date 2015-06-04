@@ -13,7 +13,7 @@ error_reporting(-1);
 */
 
 class Frm_Alert_Field Extends Frm_Alert {
-    
+
     function __construct() {
         if( class_exists('Frm_Alert') ) {
             $Frm_Alert = new Frm_Alert();
@@ -156,14 +156,14 @@ class Frm_Alert_Field Extends Frm_Alert {
       if($field_data['type'] != 'frm_alert_field'){ //change to your field key
         return $field_data;
       }
-      
+
       $field_data['name'] = __('frm_alert_field');
       $defaults = $this->get_alert_field_defaults();
 
       foreach($defaults as $key => $value) {
         $field_data['field_options'][$key] = $value;
       }
-            
+
       return $field_data;
     }
 
@@ -172,7 +172,7 @@ class Frm_Alert_Field Extends Frm_Alert {
       if ( $field['type'] != 'frm_alert_field') {
         return;
       }
-                
+
       $field_name = 'item_meta['. $field['id'] .']';
     }
 
@@ -193,7 +193,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         //Get all fields in form to build trigger alert option
         $form_id = intval($field['form_id']);
         $trigger_fields = $this->get_form_field_names_and_values($form_id);
-       
+
         ?>
             <tr><td><label>Alert Settings</label></td>
                 <td>
@@ -212,7 +212,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                             $trigger_values .= '<option value="">— Select —</option>';
 
                             foreach ($value['value'] as $key => $value) {
-                                $trigger_values .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';    
+                                $trigger_values .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';
                             }
 
                             $trigger_values .= '<option value="custom_value">Custom Value</option>';
@@ -267,10 +267,11 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $trigger_action .= '</select>';
 
                     $alert_action_fields = '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ' class="alert_actions" id="alert_action_email" placeholder="Ex. [admin_email] or [125]" />';
+                    $alert_action_fields .= '<input type="text" name="field_options[alert_action_update_field_value_' . $field['id'] . ']" class="alert_actions" id="alert_action_update_field_value" disabled="disabled">';
 
                     $html = '<div class="alert_actions_container">';
 
-                    $html .= '<div class="alert_trigger_action_container"> then ' ;
+                    $html .= '<div class="alert_trigger_action_container">';
                     $html .=  $trigger_action;
                     $html .= '</div>'; // ./alert_trigger_action_container
 
