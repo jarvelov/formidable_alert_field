@@ -30,6 +30,6 @@
     display: none;
 }
 
-.alert_trigger_action_repeat_container {
-    display: none;
+.alert_action_repeat_container {
+    display: inline;
 }

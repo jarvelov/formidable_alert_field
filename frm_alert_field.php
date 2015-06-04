@@ -305,9 +305,11 @@ class Frm_Alert_Field Extends Frm_Alert {
                     }
                     $trigger_duration_start .= '</select>';
 
-                    $html = '<div class="alert_trigger_action_repeat_container">';
+                    $html = '<div class="alert_action_repeat_container">';
+                    $html .= '<label for="alert_repeat_active">Repeat action</label>';
+                    $html .= '<input type="checkbox" id="alert_repeat_active" />';
                     $html .= $trigger_duration . ' after an entry is ' . $trigger_duration_start;
-                    $html .= '</div>'; // ./alert_trigger_action_repeat_container
+                    $html .= '</div>'; // ./alert_action_repeat_container
 
                     echo $html;
                 ?>
