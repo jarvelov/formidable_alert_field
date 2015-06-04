@@ -15,7 +15,7 @@
 }
 
 .alert_trigger_value_container {
-
+    display: inline;
 }
 
 .alert_trigger_value_custom_value {
