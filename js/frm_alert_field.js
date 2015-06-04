@@ -5,8 +5,11 @@ jQuery(document).ready(function($){
     });
 
     $('.trigger_field_action').change(function() {
-      console.log(this.value);
         $('.alert_action_field').hide();
         $('#alert_action_' + this.value).css( "display", "inline"); //show the appropriate trigger field's values
     });
+
+    $('#alert_delay_active').change(function() {
+        $('.trigger_delay_setting').css( "display", "inline");
+    }
 });

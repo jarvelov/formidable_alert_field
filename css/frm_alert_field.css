@@ -38,6 +38,14 @@
     display: inline;
 }
 
+.trigger_delay_setting {
+  display: none;
+}
+
 .alert_label {
   font-weight: bold;
+}
+
+input[type="number"] {
+  max-width: unset;
 }
