@@ -192,7 +192,7 @@ class Frm_Alert_Field Extends Frm_Alert {
             <tr><td><label>Alert Settings</label></td>
                 <td>
                 <?php
-                    $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '">';
+                    $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '" class="trigger_fields_select">';
                     $trigger_field .= '<option value="">— Select —</option>';
                     $trigger_values = NULL;
                     //trigger_fields
