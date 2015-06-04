@@ -37,3 +37,7 @@
 .alert_action_repeat_container {
     display: inline;
 }
+
+.alert_label {
+  font-weight: bold;
+}

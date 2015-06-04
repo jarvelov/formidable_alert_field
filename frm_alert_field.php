@@ -314,7 +314,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $trigger_repeat .= '</select>';
 
                     $html = '<div class="alert_action_repeat_container">';
-                    $html .= '<label for="alert_repeat_active">Repeat action</label>';
+                    $html .= '<label class="alert_label" for="alert_repeat_active">Repeat action</label>';
                     $html .= '<input type="checkbox" id="alert_repeat_active" />';
                     $html .= $trigger_repeat;
                     $html .= '</div>'; // ./alert_action_repeat_container
@@ -331,13 +331,13 @@ class Frm_Alert_Field Extends Frm_Alert {
                     //How many units to delay trigger with
 
                     $trigger_delay = '<div class="trigger_delay_setting">';
-                    $trigger_delay .= '<label for="trigger_delay_number">Delay for how many time units</label>';
+                    $trigger_delay .= '<label class="alert_label" for="trigger_delay_number">Delay for how many time units</label>';
                     $trigger_delay .= '<input type="number" name="field_options[trigger_delay_number] id="trigger_delay_number" />';
                     $trigger_delay .= '</div>'; // ./trigger_delay_setting
 
                     //Trigger delay time units
                     $trigger_delay .= '<div class="trigger_delay_setting">';
-                    $trigger_delay .= '<label for="trigger_delay_units">Time unit</label>';
+                    $trigger_delay .= '<label class="alert_label" for="trigger_delay_units">Time unit</label>';
                     $trigger_delay .= '<select name="field_options[trigger_delay_units_' . $field['id'] . ']" id="trigger_delay_units">';
                     $trigger_delay .= '<option value="">— Select —</option>';
                     foreach ($defaults['delay_start_for'] as $key => $value) {
@@ -348,7 +348,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                     //Trigger delay starts after this event
                     $trigger_delay .= '<div class="trigger_delay_setting">';
-                    $trigger_delay .= '<label for="trigger_delay_start_after">When an entry is</label>';
+                    $trigger_delay .= '<label class="alert_label" for="trigger_delay_start_after">When an entry is</label>';
                     $trigger_delay .= '<select name="field_options[trigger_delay_start_after_' . $field['id'] . ']" id="trigger_delay_start_after">';
                     $trigger_delay .= '<option value="">— Select —</option>';
                     foreach ($defaults['delay_start_after'] as $key => $value) {
@@ -358,7 +358,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $trigger_delay .= '</div>'; // ./trigger_delay_setting
 
                     $html = '<div class="alert_delay_container">';
-                    $html .= '<label for="alert_delay_active">Delay action</label>';
+                    $html .= '<label class="alert_label" for="alert_delay_active">Delay action</label>';
                     $html .= '<input type="checkbox" id="alert_delay_active" />';
                     $html .= $trigger_delay;
                     $html .= '</div>'; // ./alert_delay_container
