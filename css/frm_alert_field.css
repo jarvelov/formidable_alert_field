@@ -1,0 +1,35 @@
+.alert_container {
+    width: 100%;
+}
+
+.alert_trigger_fields_container {
+    display: none;
+}
+
+.alert_trigger_field_container {
+    display: inline;
+}
+
+.alert_trigger_operator_container {
+    display: inline;
+}
+
+.alert_trigger_value_container {
+
+}
+
+.alert_trigger_value_custom_value {
+    display: none;
+}
+
+.alert_trigger_action_container {
+    display: none;
+}
+
+.alert_action_fields_container {
+    display: none;
+}
+
+.alert_trigger_action_repeat_container {
+    display: none;
+}
