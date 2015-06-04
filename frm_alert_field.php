@@ -252,17 +252,35 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                     $alert_action_fields = '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ' class="alert_actions" id="alert_action_email" placeholder="Ex. [admin_email] or [125]" />';
 
-                    //Alert is active between these dates
-                    $alert_period_start = '<input type="date" name="field_options[alert_period_start_' . $field['id'] . '" />';
-                    $alert_period_stop = '<input type="date" name="field_options[alert_period_stop_' . $field['id'] . '" />';
+                    $html = '<div class="alert_container">';
 
-                    echo '<div class="alert_trigger_field_container">' . $trigger_field . '</div>';
-                    echo '<div class="alert_trigger_operator_container">' . $trigger_operator . '</div>';
-                    echo '<div class="alert_trigger_value_container">' . $trigger_values . '</div>';
-                    echo '<div class="alert_trigger_duration_container">' . $trigger_duration . ' after an entry is ' . $trigger_duration_start . '</div>';
-                    echo '<div class="alert_trigger_action_container">' . 'then' . $trigger_action . '</div>';
-                    echo '<div class="alert_action_fields_container">' . $alert_action_fields . '</div>';
-                    echo '<div class="alert_active_period_container">' . 'from ' . $alert_period_start . ' to ' . $alert_period_stop .'</div>';
+                    $html .= '<div class="alert_trigger_field_container">';
+                    $html .= $trigger_field
+                    $html .= '</div>'; // ./alert_trigger_field_container
+
+                    $html .= '<div class="alert_trigger_operator_container">';
+                    $html .= $trigger_operator;
+                    $html .= '</div>'; // ./alert_trigger_operator_container
+
+                    $html .= '<div class="alert_trigger_value_container">';
+                    $html .= $trigger_values;
+                    $html .= '</div>'; // ./alert_trigger_value_container
+
+                    $html .= '<div class="alert_trigger_action_container"> then ' ;
+                    $html .=  $trigger_action;
+                    $html .= '</div>'; // ./alert_trigger_action_container
+
+                    $html .= '<div class="alert_action_fields_container">';
+                    $html .= $alert_action_fields;
+                    $html .= '</div>'; // ./alert_action_fields_container
+
+                    $html .= '<div class="alert_trigger_action_repeat_container">';
+                    $html .= $trigger_duration . ' after an entry is ' . $trigger_duration_start;
+                    $html .= '</div>';
+
+                    $html .= '</div>'; // ./alert_container
+
+                    echo $html;
                     ?>
                 </td>
             </tr>
