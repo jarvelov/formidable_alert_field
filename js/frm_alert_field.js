@@ -13,9 +13,9 @@ jQuery(document).ready(function($){
 
     $('#alert_delay_active').change(function() {
       if(this.checked) {
-        $('.trigger_delay_setting').show();
+        $('.alert_setting').show();
       } else {
-        $('.trigger_delay_setting').hide();
+        $('.alert_setting').hide();
       }
     });
 });
