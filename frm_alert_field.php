@@ -266,8 +266,13 @@ class Frm_Alert_Field Extends Frm_Alert {
                     }
                     $trigger_action .= '</select>';
 
-                    $alert_action_fields = '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ' class="alert_actions" id="alert_action_email" placeholder="Ex. [admin_email] or [125]" />';
+                    $$alert_action_fields = '<div class="alert_action_field" id="alert_action_email">';
+                    $alert_action_fields .= '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ' class="alert_actions" id="alert_action_email" placeholder="Ex. [admin_email] or [125]" />';
+                    $alert_action_fields .= '</div>'; // ./alert_action_field
+
+                    $$alert_action_fields .= '<div class="alert_action_field" id="alert_action_update_field_value">';
                     $alert_action_fields .= '<input type="text" name="field_options[alert_action_update_field_value_' . $field['id'] . ']" class="alert_actions" id="alert_action_update_field_value" disabled="disabled">';
+                    $alert_action_fields .= '</div>'; // ./alert_action_field
 
                     $html = '<div class="alert_actions_container">';
 
