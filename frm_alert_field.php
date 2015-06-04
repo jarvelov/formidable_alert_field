@@ -272,11 +272,9 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $html .= $alert_action_fields;
                     $html .= '</div>'; // ./alert_action_fields_container
 
-                    $html .= '<div class="alert_trigger_action_repeat_container">';
-                    $html .= $trigger_duration . ' after an entry is ' . $trigger_duration_start;
-                    $html .= '</div>'; // ./alert_trigger_action_repeat_container
-
                     $html .= '</div>'; // ./alert_actions_container
+
+                    echo $html;
                 ?>
                 </td>
             </tr>
@@ -299,6 +297,12 @@ class Frm_Alert_Field Extends Frm_Alert {
                         $trigger_duration_start .= '<option value="' . $key . '">' . $value . '</option>';
                     }
                     $trigger_duration_start .= '</select>';
+
+                    $html = '<div class="alert_trigger_action_repeat_container">';
+                    $html .= $trigger_duration . ' after an entry is ' . $trigger_duration_start;
+                    $html .= '</div>'; // ./alert_trigger_action_repeat_container
+
+                    echo $html;
                 ?>
                 </td>
             </tr>
