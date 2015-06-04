@@ -271,7 +271,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $alert_action_fields .= '</div>'; // ./alert_action_field
 
                     $alert_action_fields .= '<div class="alert_action_field" id="alert_action_update_field_value">';
-                    $alert_action_fields .= '<input type="text" name="field_options[alert_action_update_field_value_' . $field['id'] . ']" class="alert_actions" id="alert_action_update_field_value" disabled="disabled">';
+                    $alert_action_fields .= '<input type="text" name="field_options[alert_action_update_field_value_' . $field['id'] . ']" class="alert_actions" id="alert_action_update_field_value" disabled="disabled" value="Not working atm...">';
                     $alert_action_fields .= '</div>'; // ./alert_action_field
 
                     $html = '<div class="alert_actions_container">';
