@@ -53,19 +53,40 @@ License:
      */
     function __construct() {
         //Hook up to the init action
-        add_action( 'init', array( 'Frm_Alert', 'init_frm_alert' ) );
+        add_action( 'init', array( $this, 'init_frm_alert' ) );
     }
     
     /**
      * Runs when the plugin is initialized
      */
-    public static function init_frm_alert() {
+    public function init_frm_alert() {
         if( !class_exists('Frm_Alert_Field') ) {
             include_once(FADIR . '/' . self::slug . '_field.php');
         }
 
         $frm_alert_field = new Frm_Alert_Field();
     }
+
+    /** frm_alert_enqueue_file
+     * Helper function for registering and enqueueing scripts and styles.
+     *
+     * @name            The ID to register with WordPress
+     * @file_path       The path to the actual file, can be an URL
+     * @is_script       Optional argument for if the incoming file_path is a JavaScript source file.
+     * @dependencies    Optional argument to specifiy file dependencies such as jQuery, underscore etc.
+     */
+    public function frm_alert_enqueue_file( $name, $file_path, $is_script = false, $dependencies = 'jquery') {
+        $file_path = plugin_dir_path(__FILE__) . $file_path;
+        if( file_exists($file_path) ) {
+            if( $is_script ) {
+                wp_register_script( $name, $path, $dependencies );
+                wp_enqueue_script( $name );
+            } else {
+                wp_register_style( $name, $path );
+                wp_enqueue_style( $name );
+            } // end if
+        } // end if
+    } // end frm_alert_enqueue_file
     
 } // end class
 new Frm_Alert();

@@ -15,6 +15,12 @@ error_reporting(-1);
 class Frm_Alert_Field Extends Frm_Alert {
     
     function __construct() {
+        if( class_exists('Frm_Alert') ) {
+            $Frm_Alert = new Frm_Alert();
+            $Frm_Alert->frm_alert_enqueue_file('frm_alert_field_css', 'css/frm_alert_field.css')
+            $Frm_Alert->frm_alert_enqueue_file('frm_alert_field_js', 'js/frm_alert_field.js')
+        }
+
         //Add alert field to available Formidable fields
         add_filter('frm_pro_available_fields', array($this, 'add_alert_field') );
 
