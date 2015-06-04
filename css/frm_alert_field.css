@@ -47,6 +47,6 @@
   font-weight: bold;
 }
 
-input[type="number"] {
+input[type="number"], input[type="email"] {
   max-width: 200px;
 }
