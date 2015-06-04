@@ -259,7 +259,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $html = '<div class="alert_container">';
 
                     $html .= '<div class="alert_trigger_field_container">';
-                    $html .= $trigger_field
+                    $html .= $trigger_field;
                     $html .= '</div>'; // ./alert_trigger_field_container
 
                     $html .= '<div class="alert_trigger_operator_container">';
