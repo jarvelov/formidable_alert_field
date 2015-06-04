@@ -76,8 +76,8 @@ License:
      * @dependencies    Optional argument to specifiy file dependencies such as jQuery, underscore etc.
      */
     public function frm_alert_enqueue_file( $name, $file_path, $is_script = false, $dependencies = 'jquery') {
-        $file_path = plugin_dir_path(__FILE__) . $file_path;
-        if( file_exists($file_path) ) {
+        $path = plugin_dir_path(__FILE__) . $file_path;
+        if( file_exists($path) ) {
             if( $is_script ) {
                 wp_register_script( $name, $path, $dependencies );
                 wp_enqueue_script( $name );
