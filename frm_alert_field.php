@@ -228,6 +228,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     foreach ($defaults['operators'] as $key => $value) {
                         $trigger_operator .= '<option value="' . htmlspecialchars($key) . '">' . $value . '</option>';
                     }
+                    $trigger_operator .= '</select>';
 
                     //trigger condition duration
                     $trigger_duration = '<input type="number" name="field_options[trigger_field_duration_number_' . $field['id'] . ']" step="1" />';
