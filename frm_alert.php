@@ -78,7 +78,7 @@ License:
     public function frm_alert_enqueue_file( $name, $file_path, $is_script = false, $dependencies = 'jquery') {
         $path = plugin_dir_path(__FILE__) . $file_path;
         if( file_exists($path) ) {
-            $file_url = plugin_dir_url() . $file_path;
+            $file_url = plugin_dir_url(__FILE__) . $file_path;
             if( $is_script ) {
                 wp_register_script( $name, $file_url, $dependencies );
                 wp_enqueue_script( $name );
