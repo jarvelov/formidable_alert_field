@@ -67,13 +67,12 @@ class Frm_Alert_Field Extends Frm_Alert {
                  '>' => 'greater than',
                  '<' => 'less than',
                  '>=' => 'greater than or equal to',
-                 '<=' => 'less than or equal to',
+                 '<=' => 'less than or equal to'
             ),
             'durations' => array(
-                1 => 'second(s)',
-                60 => 'minute(s)',
-                3600 => 'hour(s)',
-                86400 => 'day(s)'
+                'hourly' => 'Hourly',
+                'twicedaily' => 'Twice Daily',
+                'daily' => 'Daily'
             ),
             'duration_start' => array(
                 'created' => 'Created',
