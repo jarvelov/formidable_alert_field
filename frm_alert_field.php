@@ -75,7 +75,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                  '>=' => 'greater than or equal to',
                  '<=' => 'less than or equal to'
             ),
-            'durations' => array(
+            'repeat_period' => array(
                 'hourly' => 'Hourly',
                 'twicedaily' => 'Twice Daily',
                 'daily' => 'Daily'
@@ -84,8 +84,15 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'created' => 'Created',
                 'updated' => 'Updated'
             ),
+            'delay_start_for' => array(
+                1 => 'seconds',
+                60 => 'minutes',
+                3600 => 'hours',
+                86400 => 'days'
+            ),
             'actions' => array(
                 'email' => 'Send E-mail',
+                'frm_action' => 'Trigger Formidable Action',
                 'update_field_value' => 'Update a field\'s value'
             )
         );
@@ -258,7 +265,7 @@ class Frm_Alert_Field Extends Frm_Alert {
             <tr><td><label>Alert Action</label></td>
                 <td>
                 <?php
-                    //trigger action
+                    //What action to perform when conditions are met
                     $trigger_action = '<select name="field_options[trigger_field_action_' . $field['id'] . ']" class="trigger_field_action">';
                     $trigger_action .= '<option value="">— Select —</option>';
                     foreach ($defaults['actions'] as $key => $value) {
@@ -266,8 +273,13 @@ class Frm_Alert_Field Extends Frm_Alert {
                     }
                     $trigger_action .= '</select>';
 
+                    //Actions
                     $alert_action_fields = '<div class="alert_action_field" id="alert_action_email">';
                     $alert_action_fields .= '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ' class="alert_actions" id="alert_action_email" placeholder="Ex. [admin_email] or [125]" />';
+                    $alert_action_fields .= '</div>'; // ./alert_action_field
+
+                    $alert_action_fields = '<div class="alert_action_field" id="alert_action_frm_action">';
+                    $alert_action_fields .= '<input type="number" name="field_options[alert_action_frm_action_' . $field['id'] . ' class="alert_actions" id="alert_action_frm_action" placeholder="Formidable ID, ex. 1388" />';
                     $alert_action_fields .= '</div>'; // ./alert_action_field
 
                     $alert_action_fields .= '<div class="alert_action_field" id="alert_action_update_field_value">';
@@ -293,10 +305,10 @@ class Frm_Alert_Field Extends Frm_Alert {
             <tr><td><label>Alert Repeat</label></td>
                 <td>
                 <?php
-                    //trigger condition duration
+                    //Repeat alert for
                     $trigger_repeat = '<select name="field_options[trigger_field_condition_duration_' . $field['id'] . ']">';
                     $trigger_repeat .= '<option value="">— Select —</option>';
-                    foreach ($defaults['durations'] as $key => $value) {
+                    foreach ($defaults['repeat_period'] as $key => $value) {
                         $trigger_repeat .= '<option value="' . $key . '">' . $value . '</option>';
                     }
                     $trigger_repeat .= '</select>';
