@@ -202,7 +202,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         $trigger_fields = $this->get_form_field_names_and_values($form_id);
 
         ?>
-            <tr><td><label>Alert Settings</label></td>
+            <tr><td><label>Alert Condition</label></td>
                 <td>
                 <?php
                     $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '" class="trigger_fields_select">';
@@ -326,9 +326,21 @@ class Frm_Alert_Field Extends Frm_Alert {
             <tr><td><label>Alert Delay</label></td>
                 <td>
                 <?php
-                    //delay start - i.e. when to trigger alert action the first time
-                    $trigger_delay = '<input type="" />';
-                    $trigger_delay .= '<select name="field_options[trigger_field_condition_duration_start_' . $field['id'] . ']">';
+                    //Delay start - i.e. when to trigger alert action the first time
+
+                    //How many units to delay trigger with
+                    $trigger_delay = '<input type="number" name="field_options[trigger_delay_number] id="trigger_delay_number" />';
+
+                    //Trigger delay time units
+                    $trigger_delay .= '<select name="field_options[trigger_delay_units_' . $field['id'] . ']">';
+                    $trigger_delay .= '<option value="">— Select —</option>';
+                    foreach ($defaults['delay_start_for'] as $key => $value) {
+                        $trigger_delay .= '<option value="' . $key . '">' . $value . '</option>';
+                    }
+                    $trigger_delay .= '</select>';
+
+                    //Trigger delay starts after this event
+                    $trigger_delay .= '<select name="field_options[trigger_delay_start_after_' . $field['id'] . ']">';
                     $trigger_delay .= '<option value="">— Select —</option>';
                     foreach ($defaults['delay_start_after'] as $key => $value) {
                         $trigger_delay .= '<option value="' . $key . '">' . $value . '</option>';
