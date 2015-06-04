@@ -78,7 +78,7 @@ License:
     public function frm_alert_enqueue_file( $name, $file_path, $is_script = false, $dependencies = 'jquery') {
         $path = plugin_dir_path(__FILE__) . $file_path;
         if( file_exists($path) ) {
-            $file_url = FAURL . '/' . $file_path;
+            $file_url = plugins_url( 'formidable_alert_field/' . $file_path);
             if( $is_script ) {
                 wp_register_script( $name, $file_url, $dependencies );
                 wp_enqueue_script( $name );
