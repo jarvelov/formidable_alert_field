@@ -80,7 +80,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'twicedaily' => 'Twice Daily',
                 'daily' => 'Daily'
             ),
-            'duration_start' => array(
+            'delay_start_after' => array(
                 'created' => 'Created',
                 'updated' => 'Updated'
             ),
@@ -289,26 +289,40 @@ class Frm_Alert_Field Extends Frm_Alert {
                 <td>
                 <?php
                     //trigger condition duration
-                    $trigger_duration = '<select name="field_options[trigger_field_condition_duration_' . $field['id'] . ']">';
-                    $trigger_duration .= '<option value="">— Select —</option>';
+                    $trigger_repeat = '<select name="field_options[trigger_field_condition_duration_' . $field['id'] . ']">';
+                    $trigger_repeat .= '<option value="">— Select —</option>';
                     foreach ($defaults['durations'] as $key => $value) {
-                        $trigger_duration .= '<option value="' . $key . '">' . $value . '</option>';
+                        $trigger_repeat .= '<option value="' . $key . '">' . $value . '</option>';
                     }
-                    $trigger_duration .= '</select>';
-
-                    //trigger condition duration start - i.e. what time to consider the start time for duration
-                    $trigger_duration_start = '<select name="field_options[trigger_field_condition_duration_start_' . $field['id'] . ']">';
-                    $trigger_duration_start .= '<option value="">— Select —</option>';
-                    foreach ($defaults['duration_start'] as $key => $value) {
-                        $trigger_duration_start .= '<option value="' . $key . '">' . $value . '</option>';
-                    }
-                    $trigger_duration_start .= '</select>';
+                    $trigger_repeat .= '</select>';
 
                     $html = '<div class="alert_action_repeat_container">';
                     $html .= '<label for="alert_repeat_active">Repeat action</label>';
                     $html .= '<input type="checkbox" id="alert_repeat_active" />';
-                    $html .= $trigger_duration . ' after an entry is ' . $trigger_duration_start;
+                    $html .= $trigger_repeat;
                     $html .= '</div>'; // ./alert_action_repeat_container
+
+                    echo $html;
+                ?>
+                </td>
+            </tr>
+            <tr><td><label>Alert Delay</label></td>
+                <td>
+                <?php
+                    //delay start - i.e. when to trigger alert action the first time
+                    $trigger_delay = '<input type="" />';
+                    $trigger_delay .= '<select name="field_options[trigger_field_condition_duration_start_' . $field['id'] . ']">';
+                    $trigger_delay .= '<option value="">— Select —</option>';
+                    foreach ($defaults['delay_start_after'] as $key => $value) {
+                        $trigger_delay .= '<option value="' . $key . '">' . $value . '</option>';
+                    }
+                    $trigger_delay .= '</select>';
+
+                    $html = '<div class="alert_delay_container">';
+                    $html .= '<label for="alert_delay_active">Delay action</label>';
+                    $html .= '<input type="checkbox" id="alert_delay_active" />';
+                    $html .= $trigger_delay;
+                    $html .= '</div>'; // ./alert_delay_container
 
                     echo $html;
                 ?>
