@@ -10,6 +10,10 @@ jQuery(document).ready(function($){
     });
 
     $('#alert_delay_active').change(function() {
-        $('.trigger_delay_setting').css( "display", "inline");
-    }
+      if(this.checked) {
+        $('.trigger_delay_setting').show();
+      } else {
+        $('.trigger_delay_setting').hide();
+      }
+    });
 });

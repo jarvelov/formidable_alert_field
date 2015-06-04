@@ -47,5 +47,5 @@
 }
 
 input[type="number"] {
-  max-width: unset;
+  max-width: 120px;
 }
