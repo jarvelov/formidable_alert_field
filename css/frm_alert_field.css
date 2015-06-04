@@ -40,6 +40,7 @@
 
 .trigger_delay_setting {
   display: none;
+  margin-top: 10px;
 }
 
 .alert_label {
@@ -47,5 +48,5 @@
 }
 
 input[type="number"] {
-  max-width: 120px;
+  max-width: 200px;
 }
