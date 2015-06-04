@@ -199,7 +199,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     //trigger_fields
                     foreach ($trigger_fields as $key => $value) {
                         $trigger_field .= '<option value="' . $key . '">' . $value['name'] . '</option>';
-                        $trigger_values .= '<div class="alert_trigger_fields_container" id="alert_trigger_value_option_' . $key . '">'
+                        $trigger_values .= '<div class="alert_trigger_fields_container" id="alert_trigger_value_option_' . $key . '">';
 
                         //trigger_values
                         if( is_array($value['value']) ) {
