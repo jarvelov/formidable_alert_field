@@ -196,13 +196,14 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         foreach($defaults as $key => $value){
           if ( ! isset($field[$key]) ) {
+            var_dump('Setting field key: ' . $key);
             $field[$key] = $value;
           }
         }
 
         $field['label2'] = $defaults['label1'];
 
-        var_dump($field, $values);
+        //var_dump($field, $values);
 
         //Get all fields in form to build trigger alert option
         $form_id = intval($field['form_id']);
