@@ -200,6 +200,8 @@ class Frm_Alert_Field Extends Frm_Alert {
           }
         }
 
+        $field['label1'] = $defaults['label1'];
+
         var_dump($field, $values);
 
         //Get all fields in form to build trigger alert option
