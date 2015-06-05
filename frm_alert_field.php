@@ -59,12 +59,12 @@ class Frm_Alert_Field Extends Frm_Alert {
         }
 
         $field_data['name'] = __('Alert Field');
-        $defaults = $this->get_alert_field_defaults();
+/*        $defaults = $this->get_alert_field_defaults();
 
         foreach($defaults as $key => $value) {
             $field_data['field_options'][$key] = $value;
         }
-
+*/
         return $field_data;
     }
 
@@ -79,9 +79,11 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Set values for each field or fall back to the default value
     function alert_field_options_values( $values, $field ) {
-        $defaults = $this->get_alert_field_defaults();
+        if($field->type != 'frm_alert_field') {
+          return $values;
+        }
 
-        var_dump($field->field_options['customSetting']);
+        $defaults = $this->get_alert_field_defaults();
 
         foreach ( $defaults as $option => $default_value ) {
             $values[ $option ] = ( isset( $values['field_options'][ $option ] ) ) ? $values['field_options'][ $option ] : $default_value;
@@ -96,15 +98,6 @@ class Frm_Alert_Field Extends Frm_Alert {
           return;
         }
 
-        //var_dump($field, $values);
-
-        $defaults = $this->get_alert_field_defaults();
-
-        foreach($defaults as $key => $value){
-          if ( ! isset($field[$key]) ) {
-            $field[$key] = $value;
-          }
-        }
         ?>
             <tr><td><label>My custom setting</label></td>
                 <td>
