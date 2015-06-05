@@ -96,7 +96,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'frm_action' => 'Trigger Formidable Action',
                 'update_field_value' => 'Update a field\'s value'
             ),
-            'alert_delay_active' => false
+            'alert_delay_active' => 120
         );
 
         return $defaults_array;
