@@ -85,6 +85,8 @@ class Frm_Alert_Field Extends Frm_Alert {
               $values[ $option ] = ( isset( $values['field_options'][ $option ] ) ) ? $values['field_options'][ $option ] : $default_value;
           }
 
+          var_dump($values);
+
           return $values;
       }
 
