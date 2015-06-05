@@ -22,7 +22,6 @@ class Frm_Alert_Field Extends Frm_Alert {
         add_filter('frm_before_field_created', array($this, 'set_alert_field_defaults') );
 
         //Set field option values
-        add_filter( 'frm_setup_new_fields_vars', array($this, 'alert_field_options_values'), 30, 2 );
         add_filter( 'frm_setup_edit_fields_vars', array($this, 'alert_field_options_values'), 30, 2 );
 
         //Show the field in the form builder
