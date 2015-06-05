@@ -201,7 +201,7 @@ class Frm_Alert_Field Extends Frm_Alert {
           }
         }
 
-        $field['label2'] = $defaults['label1'];
+        var_dump($_POST);
 
         //var_dump($field, $values);
 
