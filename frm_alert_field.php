@@ -373,8 +373,8 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $html .= '</div>'; // ./alert_action_repeat_container
                     */
 
-                    $html = '<input type="text" name="field_options[alert_delay_active_' . $field['id'] . '" value="' . esc_attr($field['alert_delay_active']) . '" size="5" /> <span class="howto">pixels high</span>';
-                    $html .= '<input type="text" name="field_options[label1_' . $field['id'] . '" value="' . esc_attr($field['label1']) . '" class="frm_long_input" id="label1_' . $field['id'] . '"  />';
+                    $html = '<input type="text" name="field_options[alert_delay_active_' . $field['id'] . ']" value="' . esc_attr($field['alert_delay_active']) . '" size="5" /> <span class="howto">pixels high</span>';
+                    $html .= '<input type="text" name="field_options[label1_' . $field['id'] . ']" value="' . esc_attr($field['label1']) . '" class="frm_long_input" id="label1_' . $field['id'] . '"  />';
 
                     echo $html;
                 ?>
