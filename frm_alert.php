@@ -5,7 +5,7 @@ ini_set('display_startup_errors',1);
 error_reporting(-1);
 
 /*
-Plugin Name: Frm Alert
+Plugin Name: Formidable Alert
 Plugin URI: http://tobias.jarvelov.se/portfolio/frm_alert
 Description: Extends Formidable plugin adding an alert field
 Version: 0.1
@@ -37,8 +37,8 @@ License:
     exit();
   }
 
-  define( 'FADIR', WP_PLUGIN_DIR . '/formidable_alert_field' );
-  define( 'FAURL', WP_PLUGIN_URL . '/formidable_alert_field' );
+  define( 'FADIR', WP_PLUGIN_DIR . '/frm_alert');
+  define( 'FAURL', WP_PLUGIN_URL . '/frm_alert' );
 
   class Frm_Alert {
 

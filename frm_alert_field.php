@@ -27,6 +27,9 @@ class Frm_Alert_Field Extends Frm_Alert {
         //Set field options
         add_action('frm_field_options_form', array($this, 'alert_field_options'), 10, 3);
 
+        //Set field option values
+        add_filter( 'frm_setup_edit_field_vars', 'alert_field_options_values', 30 );
+
         //Show field in the front end
         add_action('frm_form_fields', array($this, 'alert_field_front_end'), 10, 2);
     }
@@ -45,34 +48,45 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Add alert field to available formidable fields
     public function add_alert_field($fields){
-      $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
-      return $fields;
+        $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
+        return $fields;
     }
 
     //Set default options for the alert field
     public function set_alert_field_defaults($field_data){
-      if($field_data['type'] != 'frm_alert_field'){
+        if($field_data['type'] != 'frm_alert_field'){
+            return $field_data;
+        }
+
+        $field_data['name'] = __('Alert Field');
+        $defaults = $this->get_alert_field_defaults();
+
+        foreach($defaults as $key => $value) {
+            $field_data['field_options'][$key] = $value;
+        }
+
         return $field_data;
-      }
-
-      $field_data['name'] = __('Alert Field');
-      $defaults = $this->get_alert_field_defaults();
-
-      foreach($defaults as $key => $value) {
-        $field_data['field_options'][$key] = $value;
-      }
-
-      return $field_data;
     }
 
     //Add button to display in the in form builder
     public function alert_field_admin($field){
-      if ( $field['type'] != 'frm_alert_field') {
-        return;
-      }
+        if ( $field['type'] != 'frm_alert_field') {
+          return;
+        }
 
-      $field_name = 'item_meta['. $field['id'] .']';
+        $field_name = 'item_meta['. $field['id'] .']';
     }
+
+    //Set values for each field or fall back to the default value
+    function alert_field_options_values( $values ) {
+          $defaults = $this->get_alert_field_defaults();
+
+          foreach ( $defaults as $option => $default_value ) {
+              $values[ $option ] = ( isset( $values['field_options'][ $option ] ) ) ? $values['field_options'][ $option ] : $default_value;
+          }
+
+          return $values;
+      }
 
     //Add options to configure field in form builder
     public function alert_field_options($field, $display, $values){
@@ -81,8 +95,6 @@ class Frm_Alert_Field Extends Frm_Alert {
           }
 
         $defaults = $this->get_alert_field_defaults();
-
-        var_dump($field);
 
         foreach($defaults as $key => $value){
           if ( ! isset($field[$key]) ) {
@@ -93,9 +105,9 @@ class Frm_Alert_Field Extends Frm_Alert {
             <tr><td><label>My custom setting</label></td>
                 <td>
                 <?php
-                    $html = '<input type="text" name="field_options[size_' . $field['id'] . ']" value="' . esc_attr($field['size']) . '" size="5" /> <span class="howto">Size</span>';
+                    $html = '<input type="text" name="field_options[size_' . $field['id'] . ']" value="' . esc_attr($field['size']) . '" /> <span class="howto">Size</span>';
                     $html .= '<br />';
-                    $html .= '<input type="text" name="field_options[customSetting_' . $field['id'] . ']" value="' . esc_attr($field['customSetting']) . '" size="5" /> <span class="howto">Custom Setting</span>';
+                    $html .= '<input type="text" name="field_options[customSetting_' . $field['id'] . ']" value="' . esc_attr($field['customSetting']) . '" /> <span class="howto">Custom Setting</span>';
 
                     echo $html;
                 ?>
