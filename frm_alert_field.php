@@ -94,6 +94,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 <td>
                 <?php
                     $html = '<input type="text" name="field_options[size_' . $field['id'] . ']" value="' . esc_attr($field['size']) . '" size="5" /> <span class="howto">Size</span>';
+                    $html .= '<br />';
                     $html .= '<input type="text" name="field_options[customSetting_' . $field['id'] . ']" value="' . esc_attr($field['customSetting']) . '" size="5" /> <span class="howto">Custom Setting</span>';
 
                     echo $html;
