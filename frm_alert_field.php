@@ -197,6 +197,8 @@ class Frm_Alert_Field Extends Frm_Alert {
           }
         }
 
+        var_dump($field);
+
         //Get all fields in form to build trigger alert option
         $form_id = intval($field['form_id']);
         $trigger_fields = $this->get_form_field_names_and_values($form_id);
