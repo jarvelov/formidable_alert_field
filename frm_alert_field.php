@@ -87,7 +87,7 @@ class Frm_Alert_Field Extends Frm_Alert {
           }
         }
         ?>
-            <tr><td><label>Alert Repeat</label></td>
+            <tr><td><label>My custom setting</label></td>
                 <td>
                 <?php
                     $html = '<input type="text" name="field_options[customSetting_' . $field['id'] . ']" value="' . esc_attr($field['customSetting']) . '" size="5" /> <span class="howto">Custom Setting</span>';
