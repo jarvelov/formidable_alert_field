@@ -209,7 +209,6 @@ class Frm_Alert_Field Extends Frm_Alert {
 
             <tr><td><label>Alert Condition</label></td>
                 <td>
-                  <input type="text" name="field_options[max_<?php echo $field['id'] ?>]" value="<?php echo esc_attr($field['max']); ?>" size="5" /> <span class="howto">pixels high</span>
                 <?php
                     $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '" class="trigger_fields_select">';
                     $trigger_field .= '<option value="">— Select —</option>';
@@ -340,7 +339,8 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                     $html = '<div class="alert_delay_container">';
                     $html .= '<label class="alert_label" for="alert_delay_active">Delay action</label>';
-                    $html .= '<input type="checkbox" id="alert_delay_active" name="field_options[alert_delay_active_' . $field['id'] . '" />';
+                    //$html .= '<input type="checkbox" id="alert_delay_active" name="field_options[alert_delay_active_' . $field['id'] . '" />';
+                    $html .= '<input type="text" name="field_options[max_' . $field['id'] . '" value="' . esc_attr($field['max']) . '" size="5" /> <span class="howto">pixels high</span>';
                     $html .= $trigger_delay;
                     $html .= '</div>'; // ./alert_delay_container
 
