@@ -22,7 +22,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         add_filter('frm_before_field_created', array($this, 'set_alert_field_defaults') );
 
         //Set field option values
-        add_filter( 'frm_setup_edit_fields_vars', array($this, 'alert_field_options_values'), 30, 2 );
+        add_filter( 'frm_setup_edit_fields_vars', array($this, 'alert_field_options_values'), 10, 2 );
 
         //Show the field in the form builder
         add_action('frm_display_added_fields', array($this, 'alert_field_admin') );
@@ -59,12 +59,12 @@ class Frm_Alert_Field Extends Frm_Alert {
         }
 
         $field_data['name'] = __('Alert Field');
-/*        $defaults = $this->get_alert_field_defaults();
+        $defaults = $this->get_alert_field_defaults();
 
         foreach($defaults as $key => $value) {
             $field_data['field_options'][$key] = $value;
         }
-*/
+
         return $field_data;
     }
 
@@ -118,6 +118,7 @@ class Frm_Alert_Field Extends Frm_Alert {
       if ( $field['type'] != 'frm_alert_field' ) {
         return;
       }
+
       $field['value'] = stripslashes_deep($field['value']);
     ?>
     <input type="text" id="field_<?php echo $field['field_key'] ?>" name="item_meta[<?php echo $field['id'] ?>" value="<?php echo esc_attr($field['value']) ?>" <?php do_action('frm_field_input_html', $field) ?>/>
