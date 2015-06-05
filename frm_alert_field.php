@@ -79,10 +79,6 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Set values for each field or fall back to the default value
     function alert_field_options_values( $values, $field ) {
-        if($field->type != 'frm_alert_field') {
-          return $values;
-        }
-
         $defaults = $this->get_alert_field_defaults();
 
         var_dump($field->field_options['customSetting']);
