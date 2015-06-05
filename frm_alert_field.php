@@ -65,7 +65,8 @@ class Frm_Alert_Field Extends Frm_Alert {
     **/
     private function get_alert_field_defaults() {
         $defaults_array = array(
-            'size' => 400, 'max' => 150,
+            'size' => 400,
+            'max' => 150,
             'label1' => 'Draw It',
             'operators' => array(
                  '==' => 'equal to',
@@ -94,7 +95,8 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'email' => 'Send E-mail',
                 'frm_action' => 'Trigger Formidable Action',
                 'update_field_value' => 'Update a field\'s value'
-            )
+            ),
+            'alert_delay_active' => false
         );
 
         return $defaults_array;
