@@ -86,20 +86,22 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         $defaults = $this->get_alert_field_defaults();
 
-        var_dump($values);
-
         foreach ( $defaults as $option => $default_value ) {
             $values[ $option ] = ( isset( $values['field_options'][ $option ] ) ) ? $values['field_options'][ $option ] : $default_value;
         }
+
+        var_dump($values);
 
         return $values;
       }
 
     //Add options to configure field in form builder
     public function alert_field_options($field, $display, $values){
-          if ( $field['type'] != 'frm_alert_field' ) {
-            return;
-          }
+        if ( $field['type'] != 'frm_alert_field' ) {
+          return;
+        }
+
+        var_dump($values);
 
         $defaults = $this->get_alert_field_defaults();
 
