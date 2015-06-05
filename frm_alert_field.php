@@ -68,7 +68,8 @@ class Frm_Alert_Field Extends Frm_Alert {
             'size' => 400,
             'max' => 150,
             'label1' => 'Draw It',
-            'operators' => array(
+            'alert_delay_active' => 120
+/*            'operators' => array(
                  '==' => 'equal to',
                  '!=' => 'NOT equal to',
                  '>' => 'greater than',
@@ -96,7 +97,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'frm_action' => 'Trigger Formidable Action',
                 'update_field_value' => 'Update a field\'s value'
             ),
-            'alert_delay_active' => 120
+            */
         );
 
         return $defaults_array;
@@ -367,6 +368,9 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $html .= '<input type="checkbox" id="alert_repeat_active" />';
                     $html .= $trigger_repeat;
                     $html .= '</div>'; // ./alert_action_repeat_container
+
+                    $html .= '<input type="text" name="field_options[alert_delay_active_' . $field['id'] . '" value="' . esc_attr($field['alert_delay_active']) . '" size="5" /> <span class="howto">pixels high</span>';
+                    $html .= '<input type="text" name="field_options[size_' . $field['id'] . '" value="' . esc_attr($field['size']) . '" class="frm_long_input" id="size_' . $field['id'] . '"  />';
 
                     echo $html;
                 ?>
