@@ -27,7 +27,7 @@ License:
 
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  
+
 */
 
 // don't load directly
@@ -47,7 +47,7 @@ License:
      *--------------------------------------------*/
     const name = 'Frm Alert';
     const slug = 'frm_alert';
-    
+
     /**
      * Constructor
      */
@@ -55,7 +55,7 @@ License:
         //Hook up to the init action
         add_action( 'init', array( $this, 'init_frm_alert' ) );
     }
-    
+
     /**
      * Runs when the plugin is initialized
      */
@@ -67,28 +67,6 @@ License:
         $frm_alert_field = new Frm_Alert_Field();
     }
 
-    /** frm_alert_enqueue_file
-     * Helper function for registering and enqueueing scripts and styles.
-     *
-     * @name            The ID to register with WordPress
-     * @file_path       The path to the actual file, can be an URL
-     * @is_script       Optional argument for if the incoming file_path is a JavaScript source file.
-     * @dependencies    Optional argument to specifiy file dependencies such as jQuery, underscore etc.
-     */
-    public function frm_alert_enqueue_file( $name, $file_path, $is_script = false, $dependencies = 'jquery') {
-        $path = plugin_dir_path(__FILE__) . $file_path;
-        if( file_exists($path) ) {
-            $file_url = plugin_dir_url(__FILE__) . $file_path;
-            if( $is_script ) {
-                wp_register_script( $name, $file_url, $dependencies );
-                wp_enqueue_script( $name );
-            } else {
-                wp_register_style( $name, $file_url );
-                wp_enqueue_style( $name );
-            } // end if
-        } // end if
-    } // end frm_alert_enqueue_file
-    
 } // end class
 new Frm_Alert();
 
