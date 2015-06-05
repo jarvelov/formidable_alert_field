@@ -342,7 +342,6 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $html .= '<label class="alert_label" for="alert_delay_active">Delay action</label>';
                     //$html .= '<input type="checkbox" id="alert_delay_active" name="field_options[alert_delay_active_' . $field['id'] . '" />';
                     $html .= '<input type="text" name="field_options[alert_delay_active_' . $field['id'] . '" value="' . esc_attr($field['alert_delay_active']) . '" size="5" /> <span class="howto">pixels high</span>';
-                    $html .= '<input type="text" name="field_options[label1_' . $field['id'] . '" value="' . esc_attr($field['label1']) . '" class="frm_long_input" id="label1_' . $field['id'] . '"  />';
                     $html .= $trigger_delay;
                     $html .= '</div>'; // ./alert_delay_container
 
@@ -372,7 +371,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     */
 
                     $html = '<input type="text" name="field_options[alert_delay_active_' . $field['id'] . '" value="' . esc_attr($field['alert_delay_active']) . '" size="5" /> <span class="howto">pixels high</span>';
-                    $html .= '<input type="text" name="field_options[size_' . $field['id'] . '" value="' . esc_attr($field['size']) . '" class="frm_long_input" id="size_' . $field['id'] . '"  />';
+                    $html .= '<input type="text" name="field_options[label1_' . $field['id'] . '" value="' . esc_attr($field['label1']) . '" class="frm_long_input" id="label1_' . $field['id'] . '"  />';
 
                     echo $html;
                 ?>
