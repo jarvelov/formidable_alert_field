@@ -65,9 +65,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     **/
     private function get_alert_field_defaults() {
         $defaults_array = array(
-            'size' => 400,
-            'max' => 150,
-            'label1' => 'Draw It',
+            'customSetting' => 400,
             'alert_delay_active' => 120
 /*            'operators' => array(
                  '==' => 'equal to',
@@ -193,15 +191,12 @@ class Frm_Alert_Field Extends Frm_Alert {
           }
 
         $defaults = $this->get_alert_field_defaults();
-        /*
+
         foreach($defaults as $key => $value){
           if ( ! isset($field[$key]) ) {
             $field[$key] = $value;
           }
         }
-        */
-
-        var_dump($_POST);
 
         //var_dump($field, $values);
 
@@ -373,8 +368,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $html .= '</div>'; // ./alert_action_repeat_container
                     */
 
-                    $html = '<input type="text" name="field_options[alert_delay_active_' . $field['id'] . ']" value="' . esc_attr($field['alert_delay_active']) . '" size="5" /> <span class="howto">pixels high</span>';
-                    $html .= '<input type="text" name="field_options[label1_' . $field['id'] . ']" value="' . esc_attr($field['label1']) . '" class="frm_long_input" id="label1_' . $field['id'] . '"  />';
+                    $html = '<input type="text" name="field_options[customSetting_' . $field['id'] . ']" value="' . esc_attr($field['customSetting']) . '" size="5" /> <span class="howto">Custom Setting</span>';
 
                     echo $html;
                 ?>
