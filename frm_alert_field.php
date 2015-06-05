@@ -83,14 +83,12 @@ class Frm_Alert_Field Extends Frm_Alert {
         if($field->type != 'frm_alert_field') {
           return $values;
         }
-/*
+
         $defaults = $this->get_alert_field_defaults();
 
         foreach ( $defaults as $option => $default_value ) {
             $values[ $option ] = ( isset( $values['field_options'][ $option ] ) ) ? $values['field_options'][ $option ] : $default_value;
         }
-*/
-        var_dump($values);
 
         return $values;
       }
