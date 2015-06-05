@@ -199,7 +199,7 @@ class Frm_Alert_Field Extends Frm_Alert {
           }
         }
 
-        var_dump($values);
+        var_dump($field);
 
         //Get all fields in form to build trigger alert option
         $form_id = intval($field['form_id']);
