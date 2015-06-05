@@ -28,7 +28,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         add_action('frm_display_added_fields', array($this, 'alert_field_admin') );
 
         //Create field options
-        //add_action('frm_field_options_form', array($this, 'alert_field_options'), 10, 3);
+        add_action('frm_field_options_form', array($this, 'alert_field_options'), 10, 3);
 
         //Show field in the front end
         add_action('frm_form_fields', array($this, 'alert_field_front_end'), 10, 2);
@@ -78,14 +78,14 @@ class Frm_Alert_Field Extends Frm_Alert {
     }
 
     //Set values for each field or fall back to the default value
-    function alert_field_options_values( $values, $field   ) {
+    function alert_field_options_values( $values, $field ) {
           $defaults = $this->get_alert_field_defaults();
+
+          var_dump($values['field_options']);
 
           foreach ( $defaults as $option => $default_value ) {
               $values[ $option ] = ( isset( $values['field_options'][ $option ] ) ) ? $values['field_options'][ $option ] : $default_value;
           }
-
-          var_dump($values, $field);
 
           return $values;
       }
