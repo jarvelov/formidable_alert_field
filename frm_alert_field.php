@@ -338,7 +338,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                     $html = '<div class="alert_delay_container">';
                     $html .= '<label class="alert_label" for="alert_delay_active">Delay action</label>';
-                    $html .= '<input type="checkbox" id="alert_delay_active" />';
+                    $html .= '<input type="checkbox" id="alert_delay_active" name="field_options[alert_delay_active_' . $field['id'] . '" />';
                     $html .= $trigger_delay;
                     $html .= '</div>'; // ./alert_delay_container
 
