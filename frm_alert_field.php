@@ -79,8 +79,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     //Set values for each field or fall back to the default value
     public function alert_field_options_values( $values ) {
-        var_dump($values);
-        break;
+        var_dump('STALIN');
         $defaults = $this->get_alert_field_defaults();
 
         foreach ( $defaults as $option => $default_value ) {
