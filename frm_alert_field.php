@@ -24,8 +24,6 @@ class Frm_Alert_Field Extends Frm_Alert {
         //Set field option values
         add_filter( 'frm_setup_edit_field_vars', array($this, 'alert_field_options_values'), 30 );
 
-        has_filter( 'frm_setup_edit_field_vars', array($this, 'alert_field_options_values') );
-
         //Show the field in the form builder
         add_action('frm_display_added_fields', array($this, 'alert_field_admin') );
 
@@ -99,7 +97,7 @@ class Frm_Alert_Field Extends Frm_Alert {
           return;
         }
 
-        //var_dump($field, $values);
+        has_filter( 'frm_setup_edit_field_vars', array($this, 'alert_field_options_values') );
 
         $defaults = $this->get_alert_field_defaults();
 
