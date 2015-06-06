@@ -97,9 +97,6 @@ class Frm_Alert_Field Extends Frm_Alert {
           return;
         }
 
-        $result = has_filter( 'frm_setup_edit_field_vars' );
-        var_dump($result);
-
         $defaults = $this->get_alert_field_defaults();
 
         foreach($defaults as $key => $value) {
@@ -112,6 +109,8 @@ class Frm_Alert_Field Extends Frm_Alert {
             <tr><td><label>My custom setting</label></td>
                 <td>
                 <?php
+                    $result = has_filter( 'frm_setup_edit_field_vars' );
+                    var_dump($result);
                     $html = '<input type="text" name="field_options[size_' . $field['id'] . ']" value="' . esc_attr($field['size']) . '" /> <span class="howto">Size</span>';
                     $html .= '<br />';
                     $html .= '<input type="text" name="field_options[customSetting_' . $field['id'] . ']" value="' . esc_attr($field['customSetting']) . '" /> <span class="howto">Custom Setting</span>';
