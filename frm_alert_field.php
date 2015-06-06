@@ -94,6 +94,8 @@ class Frm_Alert_Field Extends Frm_Alert {
           return;
         }
 
+        var_dump($field);
+
         $defaults = $this->get_alert_field_defaults();
 
         foreach($defaults as $key => $value) {
