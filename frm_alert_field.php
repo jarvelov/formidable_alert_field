@@ -97,9 +97,8 @@ class Frm_Alert_Field Extends Frm_Alert {
           return;
         }
 
-        $result = has_filter( 'frm_setup_edit_field_vars', array($this, 'alert_field_options_values') );
+        $result = has_filter( 'frm_setup_edit_field_vars' );
         var_dump($result);
-        break;
 
         $defaults = $this->get_alert_field_defaults();
 
