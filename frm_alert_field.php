@@ -21,9 +21,6 @@ class Frm_Alert_Field Extends Frm_Alert {
         //Set up default settings for alert field
         add_filter('frm_before_field_created', array($this, 'set_alert_field_defaults') );
 
-        //Set field option values
-        add_filter( 'frm_setup_edit_field_vars', array($this, 'alert_field_options_values'), 30 );
-
         //Show the field in the form builder
         add_action('frm_display_added_fields', array($this, 'alert_field_admin') );
 
@@ -32,6 +29,9 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         //Show field in the front end
         add_action('frm_form_fields', array($this, 'alert_field_front_end'), 10, 2);
+
+        //Update field settings when saving
+        add_filter( 'frm_update_field_options', array($this, 'alert_field_update_options'), 10, 3 );
     }
 
     /** get_alert_field_defaults()
@@ -86,6 +86,20 @@ class Frm_Alert_Field Extends Frm_Alert {
         }
 
         return $values;
+    }
+
+    public function alert_field_update_options( $field_options, $field, $values ) {
+        if($field->type != 'frm_alert_field')
+            return $field_options;
+
+        /*
+        $defaults = $this->get_alert_field_defaults();
+
+        foreach ($defaults as $opt => $default)
+            $field_options[ $opt ] = isset( $values['field_options'][ $opt . '_' . $field->id ] ) ? $values['field_options'][ $opt . '_' . $field->id ] : $default;
+            */
+            var_dump($values['field_options']);
+        return $field_options;
     }
 
     //Add options to configure field in form builder
