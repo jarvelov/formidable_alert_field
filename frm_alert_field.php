@@ -15,6 +15,13 @@ error_reporting(-1);
 class Frm_Alert_Field Extends Frm_Alert {
 
     function __construct() {
+        //Load styles and scripts
+        if( class_exists('Frm_Alert') ) {
+            $controller = init_controller();
+            $controller->load_file('frm_alert_field_css', 'css/frm_alert_field.css');
+            $controller->load_file('frm_alert_field_js', 'js/frm_alert_field.js', true);
+        }
+
         //Add alert field to available Formidable fields
         add_filter('frm_pro_available_fields', array($this, 'add_alert_field') );
 
@@ -34,8 +41,16 @@ class Frm_Alert_Field Extends Frm_Alert {
         add_filter( 'frm_update_field_options', array($this, 'alert_field_update_options'), 10, 3 );
     }
 
+    private function init_controller() {
+        try {
+            return new Frm_Alert_Controller();
+        } catch(Exception $e) {
+            return false;
+        }
+    }
+
     /** get_alert_field_defaults()
-    *   Returns an array with default values
+    * Returns an array with default values
     **/
     private function get_alert_field_defaults() {
         $defaults_array = array(
@@ -46,13 +61,19 @@ class Frm_Alert_Field Extends Frm_Alert {
         return $defaults_array;
     }
 
-    //Add alert field to available formidable fields
+    /** add_alert_field
+    * Add alert field to available formidable fields
+    * Hook for: frm_pro_available_fields
+    */
     public function add_alert_field($fields){
         $fields['frm_alert_field'] = __('Alert Field'); // the key for the field and the label
         return $fields;
     }
 
-    //Set default options for the alert field
+    /** set_alert_field_defaults
+    * Set default options for the alert field
+    * Hook for: frm_before_field_created
+    */
     public function set_alert_field_defaults($field_data){
         if($field_data['type'] != 'frm_alert_field'){
             return $field_data;
@@ -68,7 +89,10 @@ class Frm_Alert_Field Extends Frm_Alert {
         return $field_data;
     }
 
-    //Add button to display in the in form builder
+    /** alert_field_admin
+    * Add button to display in the in form builder
+    * Hook for: frm_display_added_fields
+    */
     public function alert_field_admin($field){
         if ( $field['type'] != 'frm_alert_field') {
           return;
@@ -77,17 +101,10 @@ class Frm_Alert_Field Extends Frm_Alert {
         $field_name = 'item_meta['. $field['id'] .']';
     }
 
-    //Set values for each field or fall back to the default value
-    public function alert_field_options_values( $values ) {
-        $defaults = $this->get_alert_field_defaults();
-
-        foreach ( $defaults as $option => $default_value ) {
-            $values[ $option ] = ( isset( $values['field_options'][ $option ] ) ) ? $values['field_options'][ $option ] : $default_value;
-        }
-
-        return $values;
-    }
-
+    /** alert_field_update_options
+    * Update field option values when the form is updated
+    * Hook for: frm_update_field_options
+    */
     public function alert_field_update_options( $field_options, $field, $values ) {
         if($field->type != 'frm_alert_field')
             return $field_options;
@@ -101,7 +118,10 @@ class Frm_Alert_Field Extends Frm_Alert {
         return $field_options;
     }
 
-    //Add options to configure field in form builder
+    /** alert_field_options
+    * Add options to configure field in form builder
+    * Hook for: frm_field_options_form
+    */
     public function alert_field_options($field, $display, $values){
         if ( $field['type'] != 'frm_alert_field' ) {
           return;
@@ -130,7 +150,10 @@ class Frm_Alert_Field Extends Frm_Alert {
         <?php
     }
 
-    //Show alert field when form is viewed on the front end
+    /** alert_field_front_end
+    * Hook for: frm_form_fields
+    * Show alert field when form is viewed on the front end
+    */
     public function alert_field_front_end($field, $field_name){
       if ( $field['type'] != 'frm_alert_field' ) {
         return;
