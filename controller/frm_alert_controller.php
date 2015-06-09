@@ -24,6 +24,58 @@ Class Frm_Alert_Controller {
         }
     }
 
+    /** get_form_field_names_and_values()
+    *   Returns an array with field names and their values, or values and label if separate values are used
+    *
+    **/
+    public function get_form_field_names_and_values($form_id) {
+        //Get all current fields in form
+        $form_fields_obj = FrmField::get_all_for_form($form_id);
+
+        //Convert form_fields_obj to array
+        $form_fields = $this->objectToArray($form_fields_obj);
+
+        $trigger_fields = array();
+
+        //Go over all fields and get the name and value of it and push to trigger_fields array
+        foreach ($form_fields as $form_field) {
+            switch ($form_field['type']) {
+                case 'frm_alert_field':
+                    //We don't want to trigger on our own field
+                    break;
+                case 'text':
+                    $trigger_fields[] = array(
+                            'name' => $form_field['name'],
+                            'value' => $form_field['default_value']
+                        );
+                    break;
+                case 'select':
+                    $values = array();
+                    foreach ($form_field['options'] as $key => $value) {
+                        if(is_array($value)) { //drop down with separate values
+                            $values[] = array(
+                                    'label' => $value['label'],
+                                    'value' => $value['value']
+                                );
+                        } else {
+                            $values[] = array(
+                                    'label' => $value,
+                                    'value' => $value
+                                );
+                        }
+                    }
+
+                    $trigger_fields[] = array('name' => $form_field['name'], 'value' => $values);
+                    break;
+                default:
+                    //Unsupported field type
+                    break;
+            }
+        }
+
+        return $trigger_fields;
+    }
+
     /** load_file
      * Helper function for registering and enqueueing scripts and styles.
      *

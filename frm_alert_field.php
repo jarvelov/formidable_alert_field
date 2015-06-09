@@ -88,6 +88,13 @@ class Frm_Alert_Field Extends Frm_Alert {
         return $defaults_array;
     }
 
+    private function get_form_field_names_and_values($form_id) {
+        $controller = $this->init_controller();
+        $fields = $controller->get_form_field_names_and_values($form_id);
+
+        return $fields;
+    }
+
     /** add_alert_field
     * Add alert field to available formidable fields
     * Hook for: frm_pro_available_fields
@@ -221,12 +228,6 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $html .= '</div>'; // ./alert_trigger_value_container
 
                     $html .= '</div>'; // ./alert_settings_container
-
-                    echo $html;
-
-                    $html = '<input type="text" name="field_options[size_' . $field['id'] . ']" value="' . esc_attr($field['size']) . '" /> <span class="howto">Size</span>';
-                    $html .= '<br />';
-                    $html .= '<input type="text" name="field_options[customSetting_' . $field['id'] . ']" value="' . esc_attr($field['customSetting']) . '" /> <span class="howto">Custom Setting</span>';
 
                     echo $html;
                     ?>
