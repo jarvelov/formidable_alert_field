@@ -92,6 +92,8 @@ class Frm_Alert_Field Extends Frm_Alert {
         $controller = $this->init_controller();
         $fields = $controller->get_form_field_names_and_values($form_id);
 
+        var_dump($fields);
+
         return $fields;
     }
 
