@@ -207,9 +207,9 @@ class Frm_Alert_Field Extends Frm_Alert {
                             $trigger_values .= '</select>';
 
                             $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id']  . ']" placeholder="Enter a custom value" value="' . esc_attr($field['alert_trigger_value_custom_value']) . '" id="alert_trigger_value_custom_value_' . $key . '" class="alert_trigger_value_custom_value" />';
-                        } else {
+                        } /*else {
                             $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . ']" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
-                        }
+                        }*/
 
                         $trigger_values .= '</div>'; // ./alert_trigger_fields_container
                     }
