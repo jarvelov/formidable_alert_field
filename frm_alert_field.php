@@ -220,7 +220,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         }
         $trigger_operator .= '</select>';
 
-        $html = '<div class="alert_settings_container">';
+        $html .= '<div class="alert_settings_container">';
 
         $html .= '<div class="alert_trigger_field_container">';
         $html .= $trigger_field;
