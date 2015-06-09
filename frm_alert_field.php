@@ -54,7 +54,6 @@ class Frm_Alert_Field Extends Frm_Alert {
     **/
     private function get_alert_field_defaults() {
         $defaults_array = array(
-            'alert_delay_active' => 120,
             'operators' => array(
                  '==' => 'equal to',
                  '!=' => 'NOT equal to',
@@ -89,7 +88,8 @@ class Frm_Alert_Field Extends Frm_Alert {
             'trigger_field_condition_operator' => NULL,
             'trigger_field_action' => NULL,
             'alert_action_email' => NULL,
-            'alert_action_frm_action' => NULL
+            'alert_action_frm_action' => NULL,
+            'alert_delay_active' => NULL
         );
 
         return $defaults_array;
@@ -266,6 +266,48 @@ class Frm_Alert_Field Extends Frm_Alert {
         return $html;
     }
 
+    /** get_alert_schedule_fields
+    *
+    */
+    private function get_alert_schedule_fields($field) {
+        $defaults = $this->get_alert_field_defaults();
+
+        //Delay start - i.e. when to trigger alert action the first time
+
+        //How many units to delay trigger with
+        $trigger_delay = '<div class="alert_setting">';
+        $trigger_delay .= '<label class="alert_label" for="trigger_delay_number">Delay for</label>';
+        $trigger_delay .= '<input type="number" name="field_options[trigger_delay_number] id="trigger_delay_number" />';
+
+        //Trigger delay time units
+        $trigger_delay .= '<select name="field_options[trigger_delay_units_' . $field['id'] . ']" id="trigger_delay_units">';
+        $trigger_delay .= '<option value="">— Select —</option>';
+        foreach ($defaults['delay_start_for'] as $key => $value) {
+            $trigger_delay .= '<option value="' . $key . '">' . $value . '</option>';
+        }
+        $trigger_delay .= '</select>';
+        $trigger_delay .= '</div>'; // ./alert_setting
+
+        //Trigger delay starts after this event
+        $trigger_delay .= '<div class="alert_setting">';
+        $trigger_delay .= '<label class="alert_label" for="trigger_delay_start_after">On entry</label>';
+        $trigger_delay .= '<select name="field_options[trigger_delay_start_after_' . $field['id'] . ']" id="trigger_delay_start_after">';
+        $trigger_delay .= '<option value="">— Select —</option>';
+        foreach ($defaults['delay_start_after'] as $key => $value) {
+            $trigger_delay .= '<option value="' . $key . '">' . $value . '</option>';
+        }
+        $trigger_delay .= '</select>';
+        $trigger_delay .= '</div>'; // ./alert_setting
+
+        $html = '<div class="alert_delay_container">';
+        $html .= '<label class="alert_label" for="alert_delay_active">Delay action</label>';
+        $html .= '<input type="checkbox" id="alert_delay_active" name="field_options[alert_delay_active_' . $field['id'] . '" value="' . esc_attr($field['alert_delay_active']) . '" />';
+        $html .= $trigger_delay;
+        $html .= '</div>'; // ./alert_delay_container
+
+        return $html;
+    }
+
 
     /** alert_field_options
     * Add options to configure field in form builder
@@ -297,6 +339,12 @@ class Frm_Alert_Field Extends Frm_Alert {
         $html .= '<tr><td><label>Alert Action</label></td><td>';
 
         $html .= $this->get_alert_action_fields($field);
+
+        $html .= '</td></tr>';
+
+        $html .= '<tr><td><label>Alert Schedule</label></td><td>';
+
+        $html .= $this->get_alert_schedule_fields($field);
 
         $html .= '</td></tr>';
 
