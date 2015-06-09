@@ -83,7 +83,10 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'frm_action' => 'Trigger Formidable Action',
                 'update_field_value' => 'Update a field\'s value'
             ),
-            'trigger_fields_select' => NULL
+            'trigger_fields_select' => NULL,
+            'alert_trigger_value_' => NULL,
+            'alert_trigger_value_custom_value' => NULL,
+            'trigger_field_condition_operator' => NULL
         );
 
         return $defaults_array;
@@ -188,19 +191,20 @@ class Frm_Alert_Field Extends Frm_Alert {
 
                         //trigger_values
                         if( is_array($value['value']) ) {
-                            $trigger_values .= '<select name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . ']" id="alert_trigger_value_' . $key . '">';
+                            $trigger_values .= '<select name="field_options[alert_trigger_value_' . $field['id'] . ']" id="alert_trigger_value_' . $key . '">';
                             $trigger_values .= '<option value="">— Select —</option>';
 
-                            foreach ($value['value'] as $key => $value) {
-                                $trigger_values .= '<option value="' . $value['value'] . '">' . $value['label'] . '</option>';
+                            foreach ($value['value'] as $value_key => $value_value) {
+                                $selected = selected($field['alert_trigger_value'], $value_value['value'], false );
+                                $trigger_values .= '<option value="' . $value_value['value'] . '">' . $value_value['label'] . '</option>';
                             }
 
                             $trigger_values .= '<option value="custom_value">Custom Value</option>';
                             $trigger_values .= '</select>';
 
-                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id'] . '_' . $key . ']" placeholder="Enter a custom value" id="alert_trigger_value_custom_value_' . $key . '" class="alert_trigger_value_custom_value" />';
+                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id']  . ']" placeholder="Enter a custom value" value="' . esc_attr($field['alert_trigger_value_custom_value']) . '" id="alert_trigger_value_custom_value_' . $key . '" class="alert_trigger_value_custom_value" />';
                         } else {
-                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . '_' . $key . ']" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
+                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . ']" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
                         }
 
                         $trigger_values .= '</div>'; // ./alert_trigger_fields_container
@@ -211,7 +215,8 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $trigger_operator = '<select name="field_options[trigger_field_condition_operator_' . $field['id'] . ']">';
                     $trigger_operator .= '<option value="">— Select —</option>';
                     foreach ($defaults['operators'] as $key => $value) {
-                        $trigger_operator .= '<option value="' . htmlspecialchars($key) . '">' . $value . '</option>';
+                        $selected = selected($field['trigger_field_condition_operator'], $key, false );
+                        $trigger_operator .= '<option value="' . htmlspecialchars($key) . '" '. $selected . '>' . $value . '</option>';
                     }
                     $trigger_operator .= '</select>';
 
