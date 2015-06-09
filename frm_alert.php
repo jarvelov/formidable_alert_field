@@ -64,6 +64,9 @@ License:
             include_once(FADIR . '/' . self::slug . '_field.php');
         }
 
+        if( !class_exists('Frm_Alert_Controller') ) {
+            include_once(FADIR . '/controller/' . self::slug . '_controller.php');
+        }
         $frm_alert_field = new Frm_Alert_Field();
     }
 
