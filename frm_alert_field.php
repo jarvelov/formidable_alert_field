@@ -234,16 +234,17 @@ class Frm_Alert_Field Extends Frm_Alert {
         $trigger_action .= '<option value="">— Select —</option>';
         foreach ($defaults['actions'] as $key => $value) {
             $selected = selected($field['trigger_field_action'], $key, false );
+            $selected_key = ($selected_key) ? $selected_key : ($selected ? $key : false);
             $trigger_action .= '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
         }
         $trigger_action .= '</select>';
 
         //Actions
-        $alert_action_fields = '<div class="alert_action_field" id="alert_action_email">';
+        $alert_action_fields = '<div class="alert_action_field ' . ($selected_key == 'email') ? 'active_value' : 'inactive_value' . '" id="alert_action_email">';
         $alert_action_fields .= '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ' class="alert_actions" id="alert_action_email" placeholder="Ex. [admin_email] or [125]" value="' . $field['alert_action_email'] . '" />';
         $alert_action_fields .= '</div>'; // ./alert_action_field
 
-        $alert_action_fields .= '<div class="alert_action_field" id="alert_action_frm_action">';
+        $alert_action_fields .= '<div class="alert_action_field ' . ($selected_key == 'frm_action') ? 'active_value' : 'inactive_value' . '" id="alert_action_frm_action">';
         $alert_action_fields .= '<input type="number" name="field_options[alert_action_frm_action_' . $field['id'] . ' class="alert_actions" id="alert_action_frm_action" placeholder="Formidable ID, ex. 1388" value="' . $field['alert_action_frm_action'] . '" />';
         $alert_action_fields .= '</div>'; // ./alert_action_field
 
