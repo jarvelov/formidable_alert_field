@@ -17,7 +17,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     function __construct() {
         //Load styles and scripts
         if( class_exists('Frm_Alert') ) {
-            $controller = init_controller();
+            $controller = $this->init_controller();
             $controller->load_file('frm_alert_field_css', 'css/frm_alert_field.css');
             $controller->load_file('frm_alert_field_js', 'js/frm_alert_field.js', true);
         }
