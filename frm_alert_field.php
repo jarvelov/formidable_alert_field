@@ -84,7 +84,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'update_field_value' => 'Update a field\'s value'
             ),
             'trigger_fields_select' => NULL,
-            'alert_trigger_value_' => NULL,
+            'alert_trigger_value' => NULL,
             'alert_trigger_value_custom_value' => NULL,
             'trigger_field_condition_operator' => NULL
         );
