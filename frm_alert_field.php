@@ -150,8 +150,6 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         $defaults = $this->get_alert_field_defaults();
 
-        var_dump($field_options['alert_trigger_value']);
-
         foreach ($defaults as $option => $default_value) {
             $field_options[ $option ] = isset( $values['field_options'][ $option . '_' . $field->id ] ) ? $values['field_options'][ $option . '_' . $field->id ] : $default_value;
         }
@@ -179,74 +177,68 @@ class Frm_Alert_Field Extends Frm_Alert {
         //Get all fields in form to build trigger alert option
         $form_id = intval($field['form_id']);
         $trigger_fields = $this->get_form_field_names_and_values($form_id);
-        ?>
-            <tr><td><label>Alert Condition</label></td>
-                <td>
-                <?php
-                    $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '" class="trigger_fields_select">';
-                    $trigger_field .= '<option value="">— Select —</option>';
-                    $trigger_values = NULL;
-                    //trigger_fields
-                    foreach ($trigger_fields as $key => $value) {
-                        $trigger_field_selected = selected($field['trigger_fields_select'], $key, false );
-                        $trigger_field .= '<option value="' . $key . '" ' . $trigger_field_selected . '>' . $value['name'] . '</option>';
-                        $trigger_value_show = ($trigger_field_selected) ? 'active_value' : 'inactive_value';
-                        $trigger_values .= '<div class="alert_trigger_fields_container ' . $trigger_value_show . '" id="alert_trigger_value_option_' . $key . '">';
 
-                        //trigger_values
-                        if( is_array($value['value']) ) {
-                            $trigger_values .= '<select name="field_options[alert_trigger_value_select_' . $field['id'] . ']" id="alert_trigger_value_' . $key . '">';
-                            $trigger_values .= '<option value="">— Select —</option>';
+        $html = '<tr><td><label>Alert Condition</label></td><td>';
+        $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '" class="trigger_fields_select">';
+        $trigger_field .= '<option value="">— Select —</option>';
+        $trigger_values = NULL;
+        //trigger_fields
+        foreach ($trigger_fields as $key => $value) {
+            $trigger_field_selected = selected($field['trigger_fields_select'], $key, false );
+            $trigger_field .= '<option value="' . $key . '" ' . $trigger_field_selected . '>' . $value['name'] . '</option>';
+            $trigger_value_show = ($trigger_field_selected) ? 'active_value' : 'inactive_value';
+            $trigger_values .= '<div class="alert_trigger_fields_container ' . $trigger_value_show . '" id="alert_trigger_value_option_' . $key . '">';
 
-                            foreach ($value['value'] as $value_key => $value_value) {
-                                var_dump($field['alert_trigger_value'], $value_value);
-                                $trigger_value_selected = selected($field['alert_trigger_value_select'], $value_value['value'], false );
-                                $trigger_values .= '<option value="' . $value_value['value'] . '" ' . $trigger_value_selected . '>' . $value_value['label'] . '</option>';
-                            }
+            //trigger_values
+            if( is_array($value['value']) ) {
+                $trigger_values .= '<select name="field_options[alert_trigger_value_select_' . $field['id'] . ']" id="alert_trigger_value_' . $key . '">';
+                $trigger_values .= '<option value="">— Select —</option>';
 
-                            $trigger_values .= '<option value="custom_value">Custom Value</option>';
-                            $trigger_values .= '</select>';
+                foreach ($value['value'] as $value_key => $value_value) {
+                    $trigger_value_selected = selected($field['alert_trigger_value_select'], $value_value['value'], false );
+                    $trigger_values .= '<option value="' . $value_value['value'] . '" ' . $trigger_value_selected . '>' . $value_value['label'] . '</option>';
+                }
 
-                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id']  . ']" placeholder="Enter a custom value" value="' . esc_attr($field['alert_trigger_value_custom_value']) . '" id="alert_trigger_value_custom_value_' . $key . '" class="alert_trigger_value_custom_value" />';
-                        } else {
-                            $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . ']" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
-                        }
+                $trigger_values .= '<option value="custom_value">Custom Value</option>';
+                $trigger_values .= '</select>';
 
-                        $trigger_values .= '</div>'; // ./alert_trigger_fields_container
-                    }
-                    $trigger_field .= '</select>';
+                $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id']  . ']" placeholder="Enter a custom value" value="' . esc_attr($field['alert_trigger_value_custom_value']) . '" id="alert_trigger_value_custom_value_' . $key . '" class="alert_trigger_value_custom_value" />';
+            } else {
+                $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . ']" value="' . $value['value'] . '" id="alert_trigger_value_' . $key . '" />';
+            }
 
-                    //trigger condition operators
-                    $trigger_operator = '<select name="field_options[trigger_field_condition_operator_' . $field['id'] . ']">';
-                    $trigger_operator .= '<option value="">— Select —</option>';
-                    foreach ($defaults['operators'] as $key => $value) {
-                        $selected = selected($field['trigger_field_condition_operator'], $key, false );
-                        $trigger_operator .= '<option value="' . htmlspecialchars($key) . '" '. $selected . '>' . $value . '</option>';
-                    }
-                    $trigger_operator .= '</select>';
+            $trigger_values .= '</div>'; // ./alert_trigger_fields_container
+        }
+        $trigger_field .= '</select>';
 
-                    $html = '<div class="alert_settings_container">';
+        //trigger condition operators
+        $trigger_operator = '<select name="field_options[trigger_field_condition_operator_' . $field['id'] . ']">';
+        $trigger_operator .= '<option value="">— Select —</option>';
+        foreach ($defaults['operators'] as $key => $value) {
+            $selected = selected($field['trigger_field_condition_operator'], $key, false );
+            $trigger_operator .= '<option value="' . htmlspecialchars($key) . '" '. $selected . '>' . $value . '</option>';
+        }
+        $trigger_operator .= '</select>';
 
-                    $html .= '<div class="alert_trigger_field_container">';
-                    $html .= $trigger_field;
-                    $html .= '</div>'; // ./alert_trigger_field_container
+        $html = '<div class="alert_settings_container">';
 
-                    $html .= '<div class="alert_trigger_operator_container">';
-                    $html .= $trigger_operator;
-                    $html .= '</div>'; // ./alert_trigger_operator_container
+        $html .= '<div class="alert_trigger_field_container">';
+        $html .= $trigger_field;
+        $html .= '</div>'; // ./alert_trigger_field_container
 
-                    $html .= '<div class="alert_trigger_value_container">';
-                    $html .= $trigger_values;
-                    $html .= '</div>'; // ./alert_trigger_value_container
+        $html .= '<div class="alert_trigger_operator_container">';
+        $html .= $trigger_operator;
+        $html .= '</div>'; // ./alert_trigger_operator_container
 
-                    $html .= '</div>'; // ./alert_settings_container
+        $html .= '<div class="alert_trigger_value_container">';
+        $html .= $trigger_values;
+        $html .= '</div>'; // ./alert_trigger_value_container
 
-                    echo $html;
-                    ?>
-                </td>
-            </tr>
+        $html .= '</div>'; // ./alert_settings_container
 
-        <?php
+        $html .= '</td></tr>';
+
+        echo $html;
     }
 
     /** alert_field_front_end
