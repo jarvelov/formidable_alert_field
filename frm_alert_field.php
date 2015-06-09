@@ -221,10 +221,10 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         return $html;
     }
-    /** get_alert_condition_fields
+    /** get_alert_action_fields
     *
     */
-    private function get_alert_condition_fields($field) {
+    private function get_alert_action_fields($field) {
         $defaults = $this->get_alert_field_defaults();
 
         //What action to perform when conditions are met
