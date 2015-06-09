@@ -83,11 +83,14 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'frm_action' => 'Trigger Formidable Action',
                 'update_field_value' => 'Update a field\'s value'
             ),
-            'trigger_fields_select' => NULL,
             'alert_trigger_value' => NULL,
             'alert_trigger_value_select' => NULL,
             'alert_trigger_value_custom_value' => NULL,
-            'trigger_field_condition_operator' => NULL
+            'trigger_fields_select' => NULL,
+            'trigger_field_condition_operator' => NULL,
+            'trigger_field_action' => NULL,
+            'alert_action_email' => NULL,
+            'alert_action_frm_action' => NULL
         );
 
         return $defaults_array;
@@ -231,21 +234,18 @@ class Frm_Alert_Field Extends Frm_Alert {
         $trigger_action = '<select name="field_options[trigger_field_action_' . $field['id'] . ']" class="trigger_field_action">';
         $trigger_action .= '<option value="">— Select —</option>';
         foreach ($defaults['actions'] as $key => $value) {
-            $trigger_action .= '<option value="' . $key . '">' . $value . '</option>';
+            $selected = selected($field['trigger_field_action'], $key, false );
+            $trigger_action .= '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
         }
         $trigger_action .= '</select>';
 
         //Actions
         $alert_action_fields = '<div class="alert_action_field" id="alert_action_email">';
-        $alert_action_fields .= '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ' class="alert_actions" id="alert_action_email" placeholder="Ex. [admin_email] or [125]" />';
+        $alert_action_fields .= '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ' class="alert_actions" id="alert_action_email" placeholder="Ex. [admin_email] or [125]" value="' . $field['alert_action_email'] . '" />';
         $alert_action_fields .= '</div>'; // ./alert_action_field
 
         $alert_action_fields .= '<div class="alert_action_field" id="alert_action_frm_action">';
-        $alert_action_fields .= '<input type="number" name="field_options[alert_action_frm_action_' . $field['id'] . ' class="alert_actions" id="alert_action_frm_action" placeholder="Formidable ID, ex. 1388" />';
-        $alert_action_fields .= '</div>'; // ./alert_action_field
-
-        $alert_action_fields .= '<div class="alert_action_field" id="alert_action_update_field_value">';
-        $alert_action_fields .= '<input type="text" name="field_options[alert_action_update_field_value_' . $field['id'] . ']" class="alert_actions" id="alert_action_update_field_value" disabled="disabled" value="Not working atm...">';
+        $alert_action_fields .= '<input type="number" name="field_options[alert_action_frm_action_' . $field['id'] . ' class="alert_actions" id="alert_action_frm_action" placeholder="Formidable ID, ex. 1388" value="' . $field['alert_action_frm_action'] . '" />';
         $alert_action_fields .= '</div>'; // ./alert_action_field
 
         $html = '<div class="alert_actions_container">';
