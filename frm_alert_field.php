@@ -54,7 +54,7 @@ class Frm_Alert_Field Extends Frm_Alert {
     **/
     private function get_alert_field_defaults() {
         $defaults_array = array(
-            'alert_delay_active' => 120
+            'alert_delay_active' => 120,
             'operators' => array(
                  '==' => 'equal to',
                  '!=' => 'NOT equal to',
@@ -223,7 +223,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $html .= '</div>'; // ./alert_settings_container
 
                     echo $html;
-                    
+
                     $html = '<input type="text" name="field_options[size_' . $field['id'] . ']" value="' . esc_attr($field['size']) . '" /> <span class="howto">Size</span>';
                     $html .= '<br />';
                     $html .= '<input type="text" name="field_options[customSetting_' . $field['id'] . ']" value="' . esc_attr($field['customSetting']) . '" /> <span class="howto">Custom Setting</span>';
