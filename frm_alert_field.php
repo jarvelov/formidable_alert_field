@@ -196,8 +196,8 @@ class Frm_Alert_Field Extends Frm_Alert {
                             $trigger_values .= '<option value="">— Select —</option>';
 
                             foreach ($value['value'] as $value_key => $value_value) {
-                                $selected = selected($field['alert_trigger_value'], $value_value['value'], false );
-                                $trigger_values .= '<option value="' . $value_value['value'] . '">' . $value_value['label'] . '</option>';
+                                $trigger_value_selected = selected($field['alert_trigger_value'], $value_value['value'], false );
+                                $trigger_values .= '<option value="' . $value_value['value'] . '" ' . $trigger_value_selected . '>' . $value_value['label'] . '</option>';
                             }
 
                             $trigger_values .= '<option value="custom_value">Custom Value</option>';
