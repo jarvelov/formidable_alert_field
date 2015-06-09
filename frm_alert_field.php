@@ -235,7 +235,6 @@ class Frm_Alert_Field Extends Frm_Alert {
         foreach ($defaults['actions'] as $key => $value) {
             $selected = selected($field['trigger_field_action'], $key, false );
             $selected_key = (isset($selected_key) AND ($selected_key !== false)) ? $selected_key : ($selected ? $key : false);
-            var_dump($selected_key);
             $trigger_action .= '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
         }
         $trigger_action .= '</select>';
