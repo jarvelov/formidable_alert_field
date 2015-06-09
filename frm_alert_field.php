@@ -234,7 +234,8 @@ class Frm_Alert_Field Extends Frm_Alert {
         $trigger_action .= '<option value="">— Select —</option>';
         foreach ($defaults['actions'] as $key => $value) {
             $selected = selected($field['trigger_field_action'], $key, false );
-            $selected_key = (isset($selected_key)) ? $selected_key : ($selected ? $key : false);
+            $selected_key = (isset($selected_key) AND ($selected_key !== false)) ? $selected_key : ($selected ? $key : false);
+            var_dump($selected_key);
             $trigger_action .= '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
         }
         $trigger_action .= '</select>';
@@ -247,7 +248,6 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         $active = ($selected_key == 'frm_action') ? 'active_value' : 'inactive_value';
 
-        var_dump($selected_key);
         $alert_action_fields .= '<div class="alert_action_field ' . $active . '" id="alert_action_frm_action">';
         $alert_action_fields .= '<input type="number" name="field_options[alert_action_frm_action_' . $field['id'] . ']" class="alert_actions" id="alert_action_frm_action_value" placeholder="Formidable ID, ex. 1388" value="' . $field['alert_action_frm_action'] . '" />';
         $alert_action_fields .= '</div>'; // ./alert_action_field
