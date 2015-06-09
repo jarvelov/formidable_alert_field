@@ -185,9 +185,10 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $trigger_values = NULL;
                     //trigger_fields
                     foreach ($trigger_fields as $key => $value) {
-                        $selected = selected($field['trigger_fields_select'], $key, false );
-                        $trigger_field .= '<option value="' . $key . '" ' . $selected . '>' . $value['name'] . '</option>';
-                        $trigger_values .= '<div class="alert_trigger_fields_container" id="alert_trigger_value_option_' . $key . '">';
+                        $trigger_field_selected = selected($field['trigger_fields_select'], $key, false );
+                        $trigger_field .= '<option value="' . $key . '" ' . $trigger_field_selected . '>' . $value['name'] . '</option>';
+                        $trigger_value_show = ($trigger_field_selected) ? 'active_value' : 'inactive_value';
+                        $trigger_values .= '<div class="alert_trigger_fields_container ' . $trigger_value_show . '" id="alert_trigger_value_option_' . $key . '">';
 
                         //trigger_values
                         if( is_array($value['value']) ) {

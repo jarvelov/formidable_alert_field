@@ -2,8 +2,12 @@
     width: 100%;
 }
 
-.alert_trigger_fields_container {
+.inactive_value {
     display: none;
+}
+
+.active_value {
+    display: inline;
 }
 
 .alert_trigger_field_container {
