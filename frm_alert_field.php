@@ -177,14 +177,13 @@ class Frm_Alert_Field Extends Frm_Alert {
             <tr><td><label>Alert Condition</label></td>
                 <td>
                 <?php
-                $selected_field = selected($field['trigger_fields_select'], 1, false );
-                var_dump($selected_field);
                     $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '" class="trigger_fields_select">';
                     $trigger_field .= '<option value="">— Select —</option>';
                     $trigger_values = NULL;
                     //trigger_fields
                     foreach ($trigger_fields as $key => $value) {
-                        $trigger_field .= '<option value="' . $key . '">' . $value['name'] . '</option>';
+                        $selected = selected($field['trigger_fields_select'], $key, false );
+                        $trigger_field .= '<option value="' . $key . '" ' . $selected . '>' . $value['name'] . '</option>';
                         $trigger_values .= '<div class="alert_trigger_fields_container" id="alert_trigger_value_option_' . $key . '">';
 
                         //trigger_values
