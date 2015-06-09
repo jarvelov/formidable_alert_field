@@ -83,6 +83,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'frm_action' => 'Trigger Formidable Action',
                 'update_field_value' => 'Update a field\'s value'
             ),
+            'trigger_fields_select' => NULL
         );
 
         return $defaults_array;
@@ -176,7 +177,7 @@ class Frm_Alert_Field Extends Frm_Alert {
             <tr><td><label>Alert Condition</label></td>
                 <td>
                 <?php
-                var_dump( $field );
+                var_dump( $field['trigger_fields_select'] );
                     $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '" class="trigger_fields_select">';
                     $trigger_field .= '<option value="">— Select —</option>';
                     $trigger_values = NULL;
