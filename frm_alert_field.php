@@ -80,8 +80,7 @@ class Frm_Alert_Field Extends Frm_Alert {
             ),
             'actions' => array(
                 'email' => 'Send E-mail',
-                'frm_action' => 'Trigger Formidable Action',
-                'update_field_value' => 'Update a field\'s value'
+                'frm_action' => 'Trigger Formidable Action'
             ),
             'alert_trigger_value' => NULL,
             'alert_trigger_value_select' => NULL,
