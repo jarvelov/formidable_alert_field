@@ -41,7 +41,7 @@ Class Frm_Alert_Controller {
         foreach ($form_fields as $form_field) {
             switch ($form_field['type']) {
                 case 'frm_alert_field':
-                    //We don't want to trigger on our own field
+                    //Omit frm_alert_fields from being able to trigger on
                     break;
                 case 'text':
                     $trigger_fields[] = array(

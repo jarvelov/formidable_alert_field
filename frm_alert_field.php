@@ -92,8 +92,6 @@ class Frm_Alert_Field Extends Frm_Alert {
         $controller = $this->init_controller();
         $fields = $controller->get_form_field_names_and_values($form_id);
 
-        var_dump($fields);
-
         return $fields;
     }
 
@@ -178,6 +176,7 @@ class Frm_Alert_Field Extends Frm_Alert {
             <tr><td><label>Alert Condition</label></td>
                 <td>
                 <?php
+                var_dump( ($field['trigger_fields_select']) );
                     $trigger_field = '<select name="field_options[trigger_fields_select_' . $field['id'] . '" class="trigger_fields_select">';
                     $trigger_field .= '<option value="">— Select —</option>';
                     $trigger_values = NULL;
