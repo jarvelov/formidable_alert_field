@@ -71,7 +71,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'created' => 'Created',
                 'updated' => 'Updated'
             ),
-            'schedule_delay' => array(
+            'schedule_delay_units' => array(
                 1 => 'seconds',
                 60 => 'minutes',
                 3600 => 'hours',
@@ -90,7 +90,7 @@ class Frm_Alert_Field Extends Frm_Alert {
             'alert_action_email' => NULL,
             'alert_action_frm_action' => NULL,
             'alert_delay_active' => 'off',
-            'alert_schedule_delay' => NULL,
+            'alert_schedule_delay_unit' => NULL,
             'alert_schedule_delay_number' => NULL
         );
 
@@ -286,9 +286,9 @@ class Frm_Alert_Field Extends Frm_Alert {
         $schedule_delay .= '<input type="number" name="field_options[alert_schedule_delay_number]" id="schedule_delay_number" value=" ' . esc_attr($field['alert_schedule_delay_number']) . ' "/>';
 
         //Trigger delay time units
-        $schedule_delay .= '<select name="field_options[schedule_delay_units_' . $field['id'] . ']" id="schedule_delay_units">';
+        $schedule_delay .= '<select name="field_options[alert_schedule_delay_unit' . $field['id'] . ']" id="schedule_delay_units">';
         $schedule_delay .= '<option value="">— Select —</option>';
-        foreach ($defaults['schedule_delay'] as $key => $value) {
+        foreach ($defaults['schedule_delay_units'] as $key => $value) {
             $selected = selected($field['alert_schedule_delay'], $key, false );
             $schedule_delay .= '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
         }
@@ -301,6 +301,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         $schedule_start .= '<select name="field_options[trigger_action_on_' . $field['id'] . ']" id="trigger_action_on">';
         $schedule_start .= '<option value="">— Select —</option>';
         foreach ($defaults['trigger_action_on'] as $key => $value) {
+            $selected = selected($field['alert_trigger_action'], $key, false );
             $schedule_start .= '<option value="' . $key . '">' . $value . '</option>';
         }
         $schedule_start .= '</select>';
