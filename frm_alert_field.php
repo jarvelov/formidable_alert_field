@@ -287,7 +287,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         $schedule_delay .= '<input type="number" name="field_options[alert_schedule_delay_number' . $field['id'] . ']" id="schedule_delay_number" value=" ' . esc_attr($field['alert_schedule_delay_number']) . ' "/>';
 
         //Trigger delay time units
-        $schedule_delay .= '<select name="field_options[alert_schedule_delay_unit' . $field['id'] . ']" id="schedule_delay_units">';
+        $schedule_delay .= '<select name="field_options[alert_schedule_delay_unit_' . $field['id'] . ']" id="schedule_delay_units">';
         $schedule_delay .= '<option value="">— Select —</option>';
         foreach ($defaults['schedule_delay_units'] as $key => $value) {
             $selected = selected($field['alert_schedule_delay_unit'], $key, false );
