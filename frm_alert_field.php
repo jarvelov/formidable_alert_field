@@ -71,7 +71,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'created' => 'Created',
                 'updated' => 'Updated'
             ),
-            'delay_start_for' => array(
+            'schedule_delay_' => array(
                 1 => 'seconds',
                 60 => 'minutes',
                 3600 => 'hours',
@@ -194,7 +194,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . ']" value="' . esc_attr($field['alert_trigger_value']) . '" id="alert_trigger_value_' . $key . '" />';
             }
 
-            $trigger_values .= '</div>'; // ./alert_trigger_fields_container
+            $trigger_values .= '</div>'; // /.alert_trigger_fields_container
         }
         $trigger_field .= '</select>';
 
@@ -211,17 +211,17 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         $html .= '<div class="alert_trigger_field_container">';
         $html .= $trigger_field;
-        $html .= '</div>'; // ./alert_trigger_field_container
+        $html .= '</div>'; // /.alert_trigger_field_container
 
         $html .= '<div class="alert_trigger_operator_container">';
         $html .= $trigger_operator;
-        $html .= '</div>'; // ./alert_trigger_operator_container
+        $html .= '</div>'; // /.alert_trigger_operator_container
 
         $html .= '<div class="alert_trigger_value_container">';
         $html .= $trigger_values;
-        $html .= '</div>'; // ./alert_trigger_value_container
+        $html .= '</div>'; // /.alert_trigger_value_container
 
-        $html .= '</div>'; // ./alert_settings_container
+        $html .= '</div>'; // /.alert_settings_container
 
         return $html;
     }
@@ -245,25 +245,25 @@ class Frm_Alert_Field Extends Frm_Alert {
         $active = ($selected_key == 'email') ? 'active_value' : 'inactive_value';
         $alert_action_fields = '<div class="alert_action_field ' . $active . '" id="alert_action_email">';
         $alert_action_fields .= '<input type="email" name="field_options[alert_action_email_' . $field['id'] . ']" class="alert_actions" id="alert_action_email_value" placeholder="Ex. [admin_email] or [125]" value="' . $field['alert_action_email'] . '" />';
-        $alert_action_fields .= '</div>'; // ./alert_action_field
+        $alert_action_fields .= '</div>'; // /.alert_action_field
 
         $active = ($selected_key == 'frm_action') ? 'active_value' : 'inactive_value';
 
         $alert_action_fields .= '<div class="alert_action_field ' . $active . '" id="alert_action_frm_action">';
         $alert_action_fields .= '<input type="number" name="field_options[alert_action_frm_action_' . $field['id'] . ']" class="alert_actions" id="alert_action_frm_action_value" placeholder="Formidable ID, ex. 1388" value="' . $field['alert_action_frm_action'] . '" />';
-        $alert_action_fields .= '</div>'; // ./alert_action_field
+        $alert_action_fields .= '</div>'; // /.alert_action_field
 
         $html = '<div class="alert_actions_container">';
 
         $html .= '<div class="alert_trigger_action_container">';
         $html .=  $trigger_action;
-        $html .= '</div>'; // ./alert_trigger_action_container
+        $html .= '</div>'; // /.alert_trigger_action_container
 
         $html .= '<div class="alert_action_fields_container">';
         $html .= $alert_action_fields;
-        $html .= '</div>'; // ./alert_action_fields_container
+        $html .= '</div>'; // /.alert_action_fields_container
 
-        $html .= '</div>'; // ./alert_actions_container
+        $html .= '</div>'; // /.alert_actions_container
 
         return $html;
     }
@@ -276,36 +276,43 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         //Delay start - i.e. when to trigger alert action the first time
 
-        //How many units to delay trigger with
-        $trigger_delay = '<div class="alert_setting">';
-        $trigger_delay .= '<label class="alert_label" for="trigger_delay_number">Delay for</label>';
-        $trigger_delay .= '<input type="number" name="field_options[trigger_delay_number] id="trigger_delay_number" />';
+        //How many units to delay triggering action for
+        $schedule_delay = '<div class="alert_setting">';
+        $schedule_delay .= '<label class="alert_label" for="schedule_delay_number">Delay for</label>';
+        $schedule_delay .= '<input type="number" name="field_options[schedule_delay_number] id="schedule_delay_number" />';
 
         //Trigger delay time units
-        $trigger_delay .= '<select name="field_options[trigger_delay_units_' . $field['id'] . ']" id="trigger_delay_units">';
-        $trigger_delay .= '<option value="">— Select —</option>';
+        $schedule_delay .= '<select name="field_options[schedule_delay_units_' . $field['id'] . ']" id="schedule_delay_units">';
+        $schedule_delay .= '<option value="">— Select —</option>';
         foreach ($defaults['delay_start_for'] as $key => $value) {
-            $trigger_delay .= '<option value="' . $key . '">' . $value . '</option>';
+            $schedule_delay .= '<option value="' . $key . '">' . $value . '</option>';
         }
-        $trigger_delay .= '</select>';
-        $trigger_delay .= '</div>'; // ./alert_setting
+        $schedule_delay .= '</select>';
+        $schedule_delay .= '</div>'; // /.alert_setting
 
-        //Trigger delay starts after this event
-        $trigger_delay .= '<div class="alert_setting">';
-        $trigger_delay .= '<label class="alert_label" for="trigger_delay_start_after">On entry</label>';
-        $trigger_delay .= '<select name="field_options[trigger_delay_start_after_' . $field['id'] . ']" id="trigger_delay_start_after">';
-        $trigger_delay .= '<option value="">— Select —</option>';
-        foreach ($defaults['delay_start_after'] as $key => $value) {
-            $trigger_delay .= '<option value="' . $key . '">' . $value . '</option>';
+        //Action is scheduled on this event
+        $schedule_start = '<div class="alert_setting">';
+        $schedule_start .= '<label class="alert_label" for="trigger_action_on">Start schedule when an entry is </label>';
+        $schedule_start .= '<select name="field_options[trigger_action_on_' . $field['id'] . ']" id="trigger_action_on">';
+        $schedule_start .= '<option value="">— Select —</option>';
+        foreach ($defaults['trigger_action_on'] as $key => $value) {
+            $schedule_start .= '<option value="' . $key . '">' . $value . '</option>';
         }
-        $trigger_delay .= '</select>';
-        $trigger_delay .= '</div>'; // ./alert_setting
+        $schedule_start .= '</select>';
+        $schedule_start .= '</div>'; // /.alert_setting
 
-        $html = '<div class="alert_delay_container">';
+        $html = '<div class="alert_schedule_container">';
+        $html .= '<div class="alert_schedule_start_container">';
+        $html .= $schedule_start;
+        $html .= '</div>'; // /.alert_schedule_start_container
+
+        $html .= '<div class="alert_delay_container">';
         $html .= '<label class="alert_label" for="alert_delay_active">Delay action</label>';
         $html .= '<input type="checkbox" id="alert_delay_active" name="field_options[alert_delay_active_' . $field['id'] . '" value="' . esc_attr($field['alert_delay_active']) . '" />';
-        $html .= $trigger_delay;
-        $html .= '</div>'; // ./alert_delay_container
+        $html .= $schedule_delay;
+        $html .= '</div>'; // /.alert_delay_container
+
+        $html .= '</div>'; // /.alert_schedule_container
 
         return $html;
     }
