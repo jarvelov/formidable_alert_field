@@ -302,6 +302,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         $schedule_start .= '<select name="field_options[alert_trigger_action_' . $field['id'] . ']" id="trigger_action_on">';
         $schedule_start .= '<option value="">— Select —</option>';
         foreach ($defaults['trigger_action_on'] as $key => $value) {
+            var_dump($field['alert_trigger_action']);
             $selected = selected($field['alert_trigger_action'], $key, false );
             $schedule_start .= '<option value="' . $key . '">' . $value . '</option>';
         }
