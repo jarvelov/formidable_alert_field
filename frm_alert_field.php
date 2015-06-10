@@ -275,7 +275,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         $defaults = $this->get_alert_field_defaults();
 
         $delay_active = checked( $field['alert_delay_active'], $defaults['alert_delay_active'], false );
-        var_dump($field['alert_delay_active'], $delay_active);
+        var_dump($field['alert_delay_active'], $defaults['alert_delay_active']);
         $active = ($delay_active) ? 'active_value' : 'inactive_value';
         //Delay start - i.e. when to trigger alert action the first time
 
