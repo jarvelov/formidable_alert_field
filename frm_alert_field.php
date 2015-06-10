@@ -91,7 +91,8 @@ class Frm_Alert_Field Extends Frm_Alert {
             'alert_action_frm_action' => NULL,
             'alert_delay_active' => 'off',
             'alert_schedule_delay_unit' => NULL,
-            'alert_schedule_delay_number' => NULL
+            'alert_schedule_delay_number' => NULL,
+            'alert_trigger_action' => NULL
         );
 
         return $defaults_array;
