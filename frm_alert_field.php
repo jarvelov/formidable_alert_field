@@ -274,10 +274,12 @@ class Frm_Alert_Field Extends Frm_Alert {
     private function get_alert_schedule_fields($field) {
         $defaults = $this->get_alert_field_defaults();
 
+        $delay_active = checked( $field['alert_delay_active'], $defaults['alert_delay_active'], false )
+        $active = ($delay_active) ? 'active_value' : 'inactive_value';
         //Delay start - i.e. when to trigger alert action the first time
 
         //How many units to delay triggering action for
-        $schedule_delay = '<div class="alert_delay_setting_container">';
+        $schedule_delay = '<div class="alert_delay_setting_container ' . $active . '">';
         $schedule_delay .= '<label class="alert_label" for="schedule_delay_number">Delay for</label>';
         $schedule_delay .= '<input type="number" name="field_options[schedule_delay_number] id="schedule_delay_number" />';
 
@@ -308,7 +310,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         $html .= '<div class="alert_delay_container">';
         $html .= '<label class="alert_label" for="alert_delay_active">Delay action</label>';
-        $html .= '<input type="checkbox" id="alert_delay_active" name="field_options[alert_delay_active_' . $field['id'] . '"' . checked( $field['alert_delay_active'], $defaults['alert_delay_active'], false ) . '" />';
+        $html .= '<input type="checkbox" id="alert_delay_active" name="field_options[alert_delay_active_' . $field['id'] . '"' . $delay_active . '" />';
         $html .= $schedule_delay;
         $html .= '</div>'; // /.alert_delay_container
 
