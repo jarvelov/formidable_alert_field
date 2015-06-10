@@ -284,7 +284,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         //How many units to delay triggering action for
         $schedule_delay = '<div class="alert_setting ' . $active . '">';
         $schedule_delay .= '<label class="alert_label" for="schedule_delay_number">Delay for</label>';
-        $schedule_delay .= '<input type="number" name="field_options[alert_schedule_delay_number_' . $field['id'] . ']" id="schedule_delay_number" value=" ' . esc_attr(trim($field['alert_schedule_delay_number'])) . ' "/>';
+        $schedule_delay .= '<input type="number" name="field_options[alert_schedule_delay_number_' . $field['id'] . ']" id="schedule_delay_number" value="' . esc_attr($field['alert_schedule_delay_number']) . '"/>';
 
         //Trigger delay time units
         $schedule_delay .= '<select name="field_options[alert_schedule_delay_unit_' . $field['id'] . ']" id="schedule_delay_units">';
