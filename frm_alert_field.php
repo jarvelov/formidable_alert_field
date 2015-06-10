@@ -290,7 +290,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         $schedule_delay .= '<select name="field_options[alert_schedule_delay_unit' . $field['id'] . ']" id="schedule_delay_units">';
         $schedule_delay .= '<option value="">— Select —</option>';
         foreach ($defaults['schedule_delay_units'] as $key => $value) {
-            $selected = selected($field['alert_schedule_delay'], $key, false );
+            $selected = selected($field['alert_schedule_delay_unit'], $key, false );
             $schedule_delay .= '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
         }
         $schedule_delay .= '</select>';
@@ -302,9 +302,8 @@ class Frm_Alert_Field Extends Frm_Alert {
         $schedule_start .= '<select name="field_options[alert_trigger_action_' . $field['id'] . ']" id="trigger_action_on">';
         $schedule_start .= '<option value="">— Select —</option>';
         foreach ($defaults['trigger_action_on'] as $key => $value) {
-            var_dump($field['alert_trigger_action']);
             $selected = selected($field['alert_trigger_action'], $key, false );
-            $schedule_start .= '<option value="' . $key . '">' . $value . '</option>';
+            $schedule_start .= '<option value="' . $key . '" ' . $selected . '>' . $value . '</option>';
         }
         $schedule_start .= '</select>';
         $schedule_start .= '</div>'; // /.alert_start_setting
