@@ -34,6 +34,10 @@
     display: inline;
 }
 
+.alert_schedule_start_container {
+    padding: 0 10px 10px 0;
+}
+
 .alert_setting {
   margin-top: 10px;
 }
