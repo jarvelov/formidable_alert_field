@@ -279,7 +279,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         //Delay start - i.e. when to trigger alert action the first time
 
         //How many units to delay triggering action for
-        $schedule_delay = '<div class="alert_delay_setting_container ' . $active . '">';
+        $schedule_delay = '<div class="alert_setting ' . $active . '">';
         $schedule_delay .= '<label class="alert_label" for="schedule_delay_number">Delay for</label>';
         $schedule_delay .= '<input type="number" name="field_options[schedule_delay_number] id="schedule_delay_number" />';
 
@@ -290,10 +290,10 @@ class Frm_Alert_Field Extends Frm_Alert {
             $schedule_delay .= '<option value="' . $key . '">' . $value . '</option>';
         }
         $schedule_delay .= '</select>';
-        $schedule_delay .= '</div>'; // /.alert_delay_setting_container
+        $schedule_delay .= '</div>'; // /.alert_setting
 
         //Action is scheduled on this event
-        $schedule_start = '<div class="alert_setting">';
+        $schedule_start = '<div class="alert_start_setting">';
         $schedule_start .= '<label class="alert_label" for="trigger_action_on">Start schedule when an entry is </label>';
         $schedule_start .= '<select name="field_options[trigger_action_on_' . $field['id'] . ']" id="trigger_action_on">';
         $schedule_start .= '<option value="">— Select —</option>';
@@ -301,7 +301,7 @@ class Frm_Alert_Field Extends Frm_Alert {
             $schedule_start .= '<option value="' . $key . '">' . $value . '</option>';
         }
         $schedule_start .= '</select>';
-        $schedule_start .= '</div>'; // /.alert_setting
+        $schedule_start .= '</div>'; // /.alert_start_setting
 
         $html = '<div class="alert_schedule_container">';
         $html .= '<div class="alert_schedule_start_container">';
