@@ -89,7 +89,7 @@ class Frm_Alert_Field Extends Frm_Alert {
             'trigger_field_action' => NULL,
             'alert_action_email' => NULL,
             'alert_action_frm_action' => NULL,
-            'alert_delay_active' => NULL
+            'alert_delay_active' => 'off'
         );
 
         return $defaults_array;
