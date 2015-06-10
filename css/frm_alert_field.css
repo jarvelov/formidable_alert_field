@@ -43,7 +43,8 @@
 }
 
 .alert_label {
-  font-weight: bold;
+  font-style: italic;
+  margin-right: 5px;
 }
 
 input[type="number"], input[type="email"] {
