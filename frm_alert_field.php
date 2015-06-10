@@ -71,7 +71,7 @@ class Frm_Alert_Field Extends Frm_Alert {
                 'created' => 'Created',
                 'updated' => 'Updated'
             ),
-            'schedule_delay_' => array(
+            'schedule_delay' => array(
                 1 => 'seconds',
                 60 => 'minutes',
                 3600 => 'hours',
@@ -284,7 +284,7 @@ class Frm_Alert_Field Extends Frm_Alert {
         //Trigger delay time units
         $schedule_delay .= '<select name="field_options[schedule_delay_units_' . $field['id'] . ']" id="schedule_delay_units">';
         $schedule_delay .= '<option value="">— Select —</option>';
-        foreach ($defaults['delay_start_for'] as $key => $value) {
+        foreach ($defaults['schedule_delay'] as $key => $value) {
             $schedule_delay .= '<option value="' . $key . '">' . $value . '</option>';
         }
         $schedule_delay .= '</select>';
