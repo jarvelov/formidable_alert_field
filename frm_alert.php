@@ -37,8 +37,8 @@ License:
     exit();
   }
 
-  define( 'FADIR', WP_PLUGIN_DIR . '/frm_alert');
-  define( 'FAURL', WP_PLUGIN_URL . '/frm_alert' );
+  define( 'FADIR', WP_PLUGIN_DIR . dirname(__FILE__) );
+  define( 'FAURL', WP_PLUGIN_URL . dirname(__FILE__) );
 
   class Frm_Alert {
 
