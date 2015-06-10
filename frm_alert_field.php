@@ -184,10 +184,12 @@ class Frm_Alert_Field Extends Frm_Alert {
                     $trigger_values .= '<option value="' . $value_value['value'] . '" ' . $trigger_value_selected . '>' . $value_value['label'] . '</option>';
                 }
 
-                $trigger_values .= '<option value="custom_value">Custom Value</option>';
+                $trigger_value_selected = selected($field['alert_trigger_value_select'], 'custom_value', false );
+                $trigger_value_custom_show = ($trigger_value_selected) ? 'active_value' : 'inactive_value';
+                $trigger_values .= '<option value="custom_value" ' . $trigger_value_selected . '>Custom Value</option>';
                 $trigger_values .= '</select>';
 
-                $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id']  . ']" placeholder="Enter a custom value" value="' . esc_attr($field['alert_trigger_value_custom_value']) . '" id="alert_trigger_value_custom_value_' . $key . '" class="alert_trigger_value_custom_value" />';
+                $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_custom_value_' . $field['id']  . ']" placeholder="Enter a custom value" value="' . esc_attr($field['alert_trigger_value_custom_value']) . '" id="alert_trigger_value_custom_value_' . $key . '" class="alert_trigger_value_custom_value ' . $trigger_value_custom_show . '" />';
             } else {
                 $trigger_values .= '<input type="text" name="field_options[alert_trigger_value_' . $field['id'] . ']" value="' . esc_attr($field['alert_trigger_value']) . '" id="alert_trigger_value_' . $key . '" />';
             }
