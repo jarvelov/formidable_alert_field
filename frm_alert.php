@@ -37,8 +37,8 @@ License:
     exit();
   }
 
-  define( 'FADIR', WP_PLUGIN_DIR . basename(dirname(__FILE__)) );
-  define( 'FAURL', WP_PLUGIN_URL . basename(dirname(__FILE__)) );
+  define( 'FADIR', WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) );
+  define( 'FAURL', WP_PLUGIN_URL . '/' . basename(dirname(__FILE__)) );
 
   class Frm_Alert {
 
