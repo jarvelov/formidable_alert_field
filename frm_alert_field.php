@@ -161,6 +161,8 @@ class Frm_Alert_Field Extends Frm_Alert {
             $field_options[ $option ] = isset( $values['field_options'][ $option . '_' . $field->id ] ) ? $values['field_options'][ $option . '_' . $field->id ] : $default_value;
         }
 
+        var_dump($field);
+
         //Save $field->id to database with frm_alert_action and settings
 
         return $field_options;
