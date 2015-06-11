@@ -1,4 +1,5 @@
 jQuery(document).ready(function($){
+    console.log(this.value);
     $(document).on("change",".trigger_fields_select",function() {
         console.log(this.value);
         $('.alert_trigger_fields_container').hide(); //hide all trigger fields initially
