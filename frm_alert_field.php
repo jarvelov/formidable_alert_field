@@ -298,7 +298,7 @@ class Frm_Alert_Field Extends Frm_Alert {
 
         //Action is scheduled on this event
         $schedule_start = '<div class="alert_start_setting">';
-        $schedule_start .= '<label class="alert_label" for="trigger_action_on">Start schedule when an entry is </label>';
+        $schedule_start .= '<label class="alert_label" for="trigger_action_on">Schedule action when an entry is </label>';
         $schedule_start .= '<select name="field_options[alert_trigger_action_' . $field['id'] . ']" id="trigger_action_on">';
         $schedule_start .= '<option value="">— Select —</option>';
         foreach ($defaults['trigger_action_on'] as $key => $value) {
