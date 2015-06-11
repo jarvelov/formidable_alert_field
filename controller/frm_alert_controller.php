@@ -24,6 +24,23 @@ Class Frm_Alert_Controller {
         }
     }
 
+    /** schedule_new_alert_action()
+    * Schedules an action using wp_cron
+    */
+    public function schedule_new_alert_action($settings) {
+        switch($action) {
+            case 'email':
+                break;
+            case 'frm_action':
+                break;
+            default:
+                break;
+        }
+    } //end schedule_new_alert_action
+
+
+
+
     /** get_form_field_names_and_values()
     *   Returns an array with field names and their values, or values and label if separate values are used
     *
@@ -35,7 +52,7 @@ Class Frm_Alert_Controller {
         //Convert form_fields_obj to array
         $form_fields = $this->objectToArray($form_fields_obj);
 
-        $trigger_fields = array();
+        $form_fields = array();
 
         //Go over all fields and get the name and value of it and push to trigger_fields array
         foreach ($form_fields as $form_field) {
@@ -44,7 +61,7 @@ Class Frm_Alert_Controller {
                     //Omit frm_alert_fields from being able to trigger on
                     break;
                 case 'text':
-                    $trigger_fields[] = array(
+                    $form_fields[] = array(
                             'name' => $form_field['name'],
                             'value' => $form_field['default_value']
                         );
@@ -65,7 +82,7 @@ Class Frm_Alert_Controller {
                         }
                     }
 
-                    $trigger_fields[] = array('name' => $form_field['name'], 'value' => $values);
+                    $form_fields[] = array('name' => $form_field['name'], 'value' => $values);
                     break;
                 default:
                     //Unsupported field type
@@ -73,8 +90,8 @@ Class Frm_Alert_Controller {
             }
         }
 
-        return $trigger_fields;
-    }
+        return $form_fields;
+    } //end get_form_field_names_and_values
 
     /** load_file
      * Helper function for registering and enqueueing scripts and styles.
@@ -96,5 +113,5 @@ Class Frm_Alert_Controller {
                 wp_enqueue_style( $name );
             } // end if
         } // end if
-    } // end frm_alert_enqueue_file
+    } // end load_file
 }

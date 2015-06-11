@@ -43,7 +43,8 @@ class Frm_Alert_Field Extends Frm_Alert {
 
     private function init_controller() {
         try {
-            return new Frm_Alert_Controller();
+            $controller = new Frm_Alert_Controller();
+            return $controller;
         } catch(Exception $e) {
             return false;
         }
@@ -159,6 +160,8 @@ class Frm_Alert_Field Extends Frm_Alert {
         foreach ($defaults as $option => $default_value) {
             $field_options[ $option ] = isset( $values['field_options'][ $option . '_' . $field->id ] ) ? $values['field_options'][ $option . '_' . $field->id ] : $default_value;
         }
+
+        //Save $field->id to database with frm_alert_action and settings
 
         return $field_options;
     }

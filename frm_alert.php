@@ -38,7 +38,7 @@ License:
   }
 
   define( 'FADIR', WP_PLUGIN_DIR . '/' . basename(dirname(__FILE__)) );
-  define( 'FAURL', WP_PLUGIN_URL . '/' . basename(dirname(__FILE__)) );
+  define( 'FAURL', WP_PLUGIN_URL . '/' . basename(dirname(__FILE__)) );
 
   class Frm_Alert {
 
@@ -54,6 +54,20 @@ License:
     function __construct() {
         //Hook up to the init action
         add_action( 'init', array( $this, 'init_frm_alert' ) );
+
+        //Register activation hook to install database
+        register_activation_hook( __FILE__, array($this, 'install_frm_alert') );
+
+        //Remove cron schedule
+        register_deactivation_hook( __FILE__, array($this, 'uninstall_frm_alert') );
+
+        //Schedule cron
+        /*
+        if ( !wp_next_scheduled( 'frm_alert_cron' ) ) {
+            wp_schedule_event( time(), 'hourly', 'frm_alert_cron' );
+        }
+        */
+        add_action( 'frm_alert_cron', array($this, 'frm_alert_cron_callback') );
     }
 
     /**
@@ -70,6 +84,72 @@ License:
         $frm_alert_field = new Frm_Alert_Field();
     }
 
+    /** install_frm_alert
+    *
+    */
+    public function install_frm_alert() {
+        /* Create database table */
+        global $wpdb;
+        $table_name = $wpdb->prefix . self::slug;
+
+        $charset_collate = $wpdb->get_charset_collate();
+        $sql = "CREATE TABLE IF NOT EXISTS `$table_name` (
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            field_id mediumint(9) NOT NULL,
+            form_id mediumint(9) NOT NULL,
+            scheduled tinyint(1) NOT NULL,
+            last_run timestamp NULL,
+            next_run timestamp NULL,
+            action varchar(255) DEFAULT '' NOT NULL,
+            settings text NULL,
+            created timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
+            UNIQUE KEY id (id)
+            ) $charset_collate;";
+
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        dbDelta( $sql );
+
+    } // end install_frm_alert
+    /** init_controller()
+    *
+    */
+    private function init_controller() {
+        try {
+            $controller = new Frm_Alert_Controller();
+            return $controller;
+        } catch(Exception $e) {
+            return false;
+        }
+    } //end init_controller
+
+    /** frm_alert_cron_callback
+    *
+    */
+    public function frm_alert_cron_callback() {
+        //TODO break up this code and move the sql querying into a function in the controller class
+        global $wpdb;
+        $table_name = $wpdb->prefix . self::slug;
+
+        /* Find entries which are scheduled to run and where the time
+        *   for next run in the next_run column has been passed.
+        *   Then do the associated action in the action column
+        *   with the customized settings from the settings column
+        */
+
+        $result = $wpdb->get_results( "SELECT id, name FROM mytable", ARRAY_A );
+
+        foreach ($result as $row => $columns) {
+            var_dump($row, $columns);
+        }
+
+    } //end frm_alert_cron_callback
+
+    /** uninstall_frm_alert()
+    *
+    */
+    public function uninstall_frm_alert() {
+        wp_clear_scheduled_hook('my_hourly_event');
+    } // end uninstall_frm_alert
 } // end class
 new Frm_Alert();
 
