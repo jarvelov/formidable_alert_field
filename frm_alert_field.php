@@ -161,12 +161,14 @@ class Frm_Alert_Field Extends Frm_Alert {
             $field_options[ $option ] = isset( $values['field_options'][ $option . '_' . $field->id ] ) ? $values['field_options'][ $option . '_' . $field->id ] : $default_value;
         }
 
-        var_dump($field);
-
-        //Save $field->id to database with frm_alert_action and settings
+        //Save action to database
+        $controller = $this->init_controller();
+        $controller->schedule_new_alert_action($field_options, $field);
 
         return $field_options;
     }
+
+
 
     /** get_alert_condition_fields
     *

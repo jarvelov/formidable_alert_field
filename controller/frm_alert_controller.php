@@ -1,49 +1,113 @@
 <?php
 
-Class Frm_Alert_Controller {
-    /* Helper Functions */
+Class Frm_Alert_Controller Extends Frm_Alert {
+    /*******************
+    * Helper Functions *
+    *******************/
+
+    /** load_file
+     * Helper function for registering and enqueueing scripts and styles.
+     *
+     * @name            The ID to register with WordPress
+     * @file_path       The path to the actual file, can be an URL
+     * @is_script       Optional argument for if the incoming file_path is a JavaScript source file.
+     * @dependencies    Optional argument to specifiy file dependencies such as jQuery, underscore etc.
+     */
+    public function load_file( $name, $file_path, $is_script = false, $dependencies = 'jquery') {
+        $path = plugin_dir_path( dirname(__FILE__) ) . $file_path;
+        if( file_exists($path) ) {
+            $file_url = plugin_dir_url( dirname(__FILE__) ) . $file_path;
+            if( $is_script ) {
+                wp_register_script( $name, $file_url, $dependencies );
+                wp_enqueue_script( $name );
+            } else {
+                wp_register_style( $name, $file_url );
+                wp_enqueue_style( $name );
+            } // end if
+        } // end if
+    } // end load_file
 
     //Convert object to array
-    public function objectToArray($d) {
-        if (is_object($d)) {
+    private function objectToArray($obj) {
+        if (is_object($obj)) {
             // Gets the properties of the given object
             // with get_object_vars function
-            $d = get_object_vars($d);
+            $obj = get_object_vars($obj);
         }
 
-        if (is_array($d)) {
+        if (is_array($obj)) {
             /*
             * Return array converted to object
             * Using __CLASS__ and __FUNCTION__ (Magic constant)
             * for recursive call
             */
-            return array_map( array(__CLASS__, __FUNCTION__), $d);
+            return array_map( array(__CLASS__, __FUNCTION__), $obj);
         } else {
             // Return array
-            return $d;
+            return $obj;
         }
     }
 
-    /** schedule_new_alert_action()
-    * Schedules an action using wp_cron
+    /****************
+    * SQL Functions *
+    ****************/
+
+    /** insert_or_update_database_record
+    *
     */
-    public function schedule_new_alert_action($settings) {
-        switch($action) {
+    private function insert_or_update_database_record($db_args) {
+        global $wpdb;
+
+        $Frm_Alert = new Frm_Alert();
+        $table_name = $wpdb->prefix . $Frm_Alert::slug;
+
+        //TODO check if field_id exists within the table and perform and update, or insert a new row
+
+    } // end insert_or_update_database_record
+
+    /**********************
+    * Frm_Alert Functions *
+    **********************/
+
+    /** schedule_new_alert_action()
+    * Adds an action to be performed when a specific condition is true
+    */
+    public function schedule_new_alert_action($field_options, $field) {
+        $action = $field_options['alert_trigger_action'];
+
+        switch ($action) {
             case 'email':
+                $settings = array(
+                    'email_address' => $field_options['alert_action_email'],
+                    'subject' => 'Alert!',
+                    'body' => 'Alert triggered!'
+                );
                 break;
             case 'frm_action':
+                $settings = array(
+                    'frm_action_id' => $field_options['alert_action_frm_action']
+                );
                 break;
             default:
+                //Unsupported action
                 break;
         }
+
+        $db_args = array(
+            'field_id' => $field->id,
+            'form_id' => $field->form_id,
+            'scheduled' => true,
+            'next_run' => $next_run,
+            'action' => $action,
+            'settings' => $settings
+        );
+
+        $this->insert_or_update_database_record($db_args);
     } //end schedule_new_alert_action
 
-
-
-
     /** get_form_field_names_and_values()
-    *   Returns an array with field names and their values, or values and label if separate values are used
-    *
+    *   Returns an array with field names and their values,
+    *   or values and label, if separate values are used
     **/
     public function get_form_field_names_and_values($form_id) {
         //Get all current fields in form
@@ -92,26 +156,4 @@ Class Frm_Alert_Controller {
 
         return $form_fields;
     } //end get_form_field_names_and_values
-
-    /** load_file
-     * Helper function for registering and enqueueing scripts and styles.
-     *
-     * @name            The ID to register with WordPress
-     * @file_path       The path to the actual file, can be an URL
-     * @is_script       Optional argument for if the incoming file_path is a JavaScript source file.
-     * @dependencies    Optional argument to specifiy file dependencies such as jQuery, underscore etc.
-     */
-    public function load_file( $name, $file_path, $is_script = false, $dependencies = 'jquery') {
-        $path = plugin_dir_path( dirname(__FILE__) ) . $file_path;
-        if( file_exists($path) ) {
-            $file_url = plugin_dir_url( dirname(__FILE__) ) . $file_path;
-            if( $is_script ) {
-                wp_register_script( $name, $file_url, $dependencies );
-                wp_enqueue_script( $name );
-            } else {
-                wp_register_style( $name, $file_url );
-                wp_enqueue_style( $name );
-            } // end if
-        } // end if
-    } // end load_file
 }
