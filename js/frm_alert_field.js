@@ -14,7 +14,6 @@ jQuery(document).ready(function($){
     });
 
     $(document).on("change",".trigger_field_action",function() {
-      console.log(this.value);
         $('.alert_action_field').hide();
 
         $('#alert_action_' + this.value).css( "display", "inline"); //show the appropriate trigger field's values
