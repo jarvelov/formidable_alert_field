@@ -69,7 +69,8 @@ class Frm_Alert_Field Extends Frm_Alert {
             ),
             'trigger_action_on' => array(
                 'created' => 'Created',
-                'updated' => 'Updated'
+                'updated' => 'Updated',
+                'created_updated' => 'Created and updated'
             ),
             'schedule_delay_units' => array(
                 1 => 'seconds',
